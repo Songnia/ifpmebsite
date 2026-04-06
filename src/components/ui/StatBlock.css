@@ -1,0 +1,31 @@
+.stat-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-xl) var(--space-lg);
+}
+
+.stat-block__icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+    color: var(--color-primary-gold);
+}
+
+.stat-block__value {
+    font-family: var(--font-serif);
+    font-size: var(--text-h1);
+    font-weight: 700;
+    color: var(--color-primary-gold);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+.stat-block__label {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    color: var(--color-gold-light);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+}
