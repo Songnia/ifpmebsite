@@ -1,0 +1,80 @@
+/* =====================================================
+   IFPMEB – Design Token & Typography System
+   ===================================================== */
+
+:root {
+   /* --- Color Palette --- */
+   --color-primary-blue: #003366;
+   --color-primary-blue-dark: #002244;
+   --color-primary-gold: #C5A059;
+   --color-gold-light: #E8D5B5;
+   --color-gold-dark: #9B7D3E;
+   --color-bg-white: #FFFFFF;
+   --color-bg-gray: #F8F9FA;
+   --color-bg-gray-dark: #E9ECEF;
+   --color-text-dark: #1A1A1A;
+   --color-text-muted: #6C757D;
+   --color-border: #DEE2E6;
+   --color-error: #C0392B;
+   --color-success: #27AE60;
+   --color-whatsapp: #25D366;
+
+   /* --- Typography Fonts --- */
+   --font-serif: 'Playfair Display', 'Libre Baskerville', Georgia, serif;
+   --font-sans: 'Inter', 'Open Sans', system-ui, sans-serif;
+   --font-accent: 'Montserrat', 'Inter', sans-serif;
+
+   /* --- Fluid Typography Scale --- */
+   --text-hero: clamp(3.5rem, 8vw, 6rem);
+   --text-h1: clamp(2.5rem, 5vw, 4rem);
+   --text-h2: clamp(2rem, 4vw, 3rem);
+   --text-h3: clamp(1.5rem, 3vw, 2rem);
+   --text-h4: clamp(1.25rem, 2vw, 1.5rem);
+   --text-body: 1.125rem;
+   --text-small: 0.875rem;
+   --text-caption: 0.75rem;
+
+   /* --- Spacing --- */
+   --space-xs: 0.25rem;
+   --space-sm: 0.5rem;
+   --space-md: 1rem;
+   --space-lg: 1.5rem;
+   --space-xl: 2.5rem;
+   --space-2xl: 4rem;
+   --space-3xl: 6rem;
+
+   /* --- Borders & Radius --- */
+   --radius-sm: 6px;
+   --radius-md: 12px;
+   --radius-lg: 20px;
+   --radius-xl: 32px;
+   --radius-pill: 999px;
+
+   /* --- Shadows --- */
+   --shadow-sm: 0 1px 4px rgba(0, 51, 102, 0.08);
+   --shadow-md: 0 4px 16px rgba(0, 51, 102, 0.12);
+   --shadow-lg: 0 8px 32px rgba(0, 51, 102, 0.16);
+   --shadow-gold: 0 4px 20px rgba(197, 160, 89, 0.3);
+
+   /* --- Transitions --- */
+   --transition-fast: 0.15s ease;
+   --transition-base: 0.3s ease;
+   --transition-slow: 0.5s ease;
+
+   /* --- Z-Index Layers --- */
+   --z-base: 1;
+   --z-dropdown: 100;
+   --z-sticky: 200;
+   --z-modal: 300;
+   --z-toast: 400;
+
+   /* --- Container --- */
+   --container-max: 1200px;
+   --container-pad: clamp(1rem, 4vw, 2rem);
+}
+
+/* --- Responsive Breakpoints (reference) ---
+   Mobile:       < 640px
+   Tablet:       640px – 1024px
+   Desktop:      > 1024px
+*/

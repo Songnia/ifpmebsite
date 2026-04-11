@@ -1,0 +1,95 @@
+@import './pages.css';
+
+.galerie-filters {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+    flex-wrap: wrap;
+}
+
+.filter-pill {
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-full);
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    color: var(--color-blue);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.filter-pill:hover {
+    border-color: var(--color-blue-light);
+    background: var(--color-cream);
+}
+
+.filter-pill--active {
+    background: var(--color-blue);
+    color: var(--color-white);
+    border-color: var(--color-blue);
+    box-shadow: var(--shadow-sm);
+}
+
+.galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.galerie-item {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--color-cream);
+    box-shadow: var(--shadow-sm);
+}
+
+.galerie-item .media-placeholder {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.galerie-item:hover .media-placeholder {
+    transform: scale(1.05);
+}
+
+.galerie-item__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 51, 102, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.galerie-item:hover .galerie-item__overlay {
+    opacity: 1;
+}
+
+.galerie-item__icon {
+    width: 60px;
+    height: 60px;
+    background: var(--color-white);
+    color: var(--color-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    transform: translateY(20px);
+    transition: transform 0.4s var(--transition-normal);
+}
+
+.galerie-item:hover .galerie-item__icon {
+    transform: translateY(0);
+}
+
+@media (max-width: 639px) {
+    .galerie-grid {
+        grid-template-columns: 1fr;
+    }
+}
