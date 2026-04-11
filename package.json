@@ -1,0 +1,13 @@
+{
+  "name": "ifpmeb-monorepo",
+  "private": true,
+  "workspaces": [
+    "ifpmeb",
+    "backend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=ifpmeb",
+    "dev": "npm run dev --workspace=ifpmeb",
+    "lint": "npm run lint --workspace=ifpmeb"
+  }
+}

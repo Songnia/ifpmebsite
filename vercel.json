@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "ifpmeb/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/v1/(.*)",
+      "dest": "http://votre-api-django.com/api/v1/$1"
+    },
+    {
+      "src": "/[^.]*",
+      "dest": "/ifpmeb/index.html",
+      "status": 200
+    }
+  ]
+}
