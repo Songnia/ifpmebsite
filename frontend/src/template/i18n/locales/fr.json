@@ -1,0 +1,356 @@
+{
+    "hero": {
+        "slides": {
+            "1": {
+                "title": "Capturer les",
+                "highlight": "Moments de la Vie",
+                "description": "Photographie professionnelle pour mariages, événements et besoins d'entreprise. Réservez votre séance dès aujourd'hui.",
+                "miniDesc": "CHOISISSEZ-NOUS POUR IMMORTALISER VOS MOMENTS PRÉCIEUX DANS DES ŒUVRES D'ART VISUELLES INESTIMABLES ET IMMERSIVES"
+            },
+            "2": {
+                "title": "Révélez votre",
+                "highlight": "Vrai Moi",
+                "description": "Des portraits en studio qui racontent votre histoire unique avec style et élégance.",
+                "miniDesc": "UN ÉCLAIRAGE ET UNE COMPOSITION EXPERTS POUR FAIRE RESSORTIR LA MEILLEURE VERSION DE VOUS-MÊME"
+            },
+            "3": {
+                "title": "Événements",
+                "highlight": "Inoubliables",
+                "description": "Nous capturons l'énergie et l'émotion de vos occasions spéciales.",
+                "miniDesc": "DES RÉUNIONS INTIMISTES AUX GRANDES CÉLÉBRATIONS, NOUS DOCUMENTONS CHAQUE DÉTAIL"
+            }
+        },
+        "buttons": {
+            "viewPortfolio": "Voir le Portfolio",
+            "bookSession": "Réserver une Séance"
+        }
+    },
+    "navbar": {
+        "home": "Accueil",
+        "portfolio": "Portfolio",
+        "shop": "Boutique",
+        "blog": "Blog",
+        "about": "À Propos",
+        "contact": "Contact",
+        "admin": "Admin",
+        "logout": "Déconnexion",
+        "login": "Connexion",
+        "signup": "S'inscrire"
+    },
+    "footer": {
+        "description": "{{siteName}} est un studio professionnel de photographie et de vidéographie situé à Douala, Cameroun.",
+        "quickLinks": "Liens Rapides",
+        "contactUs": "Contactez-nous",
+        "rights": "Tous droits réservés.",
+        "privacyPolicy": "Politique de Confidentialité",
+        "termsOfService": "Conditions d'Utilisation"
+    },
+    "about": {
+        "title": "À PROPOS",
+        "founder": "Le Promoteur",
+        "biography": "Biographie",
+        "bio1": "Passionné par l'image depuis plus de 10 ans, j'ai fondé Mon Studios avec une vision simple : capturer l'authenticité. Mon parcours m'a mené de la photographie de rue aux studios de mode, forgeant un style unique qui mêle spontanéité et maîtrise technique.",
+        "bio2": "J'ai eu le privilège de travailler avec des marques prestigieuses et de documenter des centaines d'histoires d'amour et de réussite. Aujourd'hui, je mets cette expérience au service de vos projets.",
+        "philosophy": "Ma Philosophie",
+        "quote": "\"Chaque image doit raconter une histoire.\"",
+        "philosophyDesc": "Mon approche est basée sur l'écoute et la connexion. Je ne me contente pas de prendre une photo, je cherche à comprendre qui vous êtes pour le révéler à travers mon objectif. Que ce soit pour un portrait corporate ou un mariage, je privilégie la lumière naturelle et les émotions vraies, tout en apportant une touche éditoriale soignée en post-production."
+    },
+    "portfolio": {
+        "title": "Notre Portfolio",
+        "subtitle": "Explorez nos derniers travaux à travers différentes catégories.",
+        "categories": {
+            "all": "Tous les travaux",
+            "weddings": "Mariages",
+            "maternity": "Grossesse",
+            "babies": "Bébés & Enfants",
+            "corporate": "Corporate",
+            "events": "Événements",
+            "studio": "Studio"
+        }
+    },
+    "shop": {
+        "title": "Boutique",
+        "version": "Mode Blueprint / v1.0",
+        "checkout": "Paiement",
+        "categories": {
+            "all": "Tout",
+            "prints": "Impressions",
+            "frames": "Cadres",
+            "goodies": "Accessoires",
+            "secondHand": "Occasion"
+        },
+        "products": {
+            "printA4": "Impression Professionnelle A4",
+            "frameBlack": "Cadre de Galerie Noir",
+            "filmRoll": "Pack de Pellicules",
+            "cameraLens": "Objectif Vintage",
+            "lightingKit": "Kit d'Éclairage Studio",
+            "photoPaper": "Papier Photo Mat",
+            "tripod": "Trépied",
+            "cleaningKit": "Kit de Nettoyage d'Objectif"
+        },
+        "buttons": {
+            "addToCart": "Ajouter au Panier",
+            "buyOnChariow": "Acheter sur Chariow",
+            "orderOnWhatsApp": "Commander sur WhatsApp"
+        },
+        "cart": {
+            "title": "Votre Panier",
+            "empty": "Votre panier est vide",
+            "emptyDesc": "Il semble que vous n'ayez encore rien ajouté à votre panier.",
+            "continueShopping": "Continuer les achats",
+            "subtotal": "Sous-total",
+            "checkoutWhatsApp": "Commander via WhatsApp"
+        },
+        "orderForm": {
+            "title": "Finaliser la commande",
+            "name": "Nom",
+            "phone": "Téléphone",
+            "nameRequired": "Le nom est obligatoire",
+            "phoneRequired": "Le téléphone est obligatoire",
+            "yourOrder": "Votre commande :",
+            "cancel": "Annuler",
+            "submit": "Commander sur WhatsApp",
+            "whatsappMessage": "Bonjour, je souhaite commander :\n"
+        }
+    },
+    "contact": {
+        "title": "Contactez-nous",
+        "info": {
+            "address": "Adresse",
+            "phone": "+237 698 399 985",
+            "email": "Email"
+        },
+        "form": {
+            "title": "Envoyez-nous un message",
+            "name": "Nom",
+            "email": "Email",
+            "subject": "Sujet",
+            "message": "Message",
+            "submit": "Envoyer sur WhatsApp",
+            "errors": {
+                "name": "Le nom est obligatoire",
+                "email": "Email valide requis",
+                "subject": "Le sujet est obligatoire",
+                "message": "Le message est obligatoire"
+            }
+        }
+    },
+    "auth": {
+        "login": {
+            "title": "Connexion",
+            "subtitle": "Accédez à votre espace Mon Studio",
+            "email": "Email",
+            "password": "Mot de passe",
+            "submit": "Se connecter",
+            "noAccount": "Vous n'avez pas de compte ?",
+            "signup": "Inscrivez-vous",
+            "error": "Une erreur est survenue lors de la connexion."
+        },
+        "signup": {
+            "title": "Inscription",
+            "subtitle": "Rejoignez l'aventure Mon Studio",
+            "name": "Nom complet",
+            "email": "Email",
+            "password": "Mot de passe",
+            "confirmPassword": "Confirmer le mot de passe",
+            "submit": "S'inscrire",
+            "hasAccount": "Vous avez déjà un compte ?",
+            "login": "Connectez-vous",
+            "error": "Une erreur est survenue lors de l'inscription.",
+            "passwordMismatch": "Les mots de passe ne correspondent pas."
+        }
+    },
+    "blog": {
+        "title": "Dernières Nouvelles & Mises à jour",
+        "subtitle": "Restez informé de nos derniers projets, conseils en photographie, offres spéciales et histoires de coulisses.",
+        "categories": {
+            "all": "Tout",
+            "news": "Actualités",
+            "tutorials": "Tutoriels",
+            "promos": "Promos",
+            "behindTheScenes": "Coulisses"
+        },
+        "articles": {
+            "1": {
+                "title": "VENTE FLASH : Promo 1000f pour toutes les séances",
+                "excerpt": "Offre à durée limitée ! Profitez de nos services de photographie professionnelle à un prix imbattable. Réservez maintenant et économisez sur vos mariages, événements et séances corporate."
+            },
+            "2": {
+                "title": "Derrière l'Objectif : Notre dernière séance de mariage",
+                "excerpt": "Jetez un coup d'œil aux coulisses de notre récente séance photo de mariage à la plage. Découvrez notre processus et la magie que nous créons."
+            },
+            "3": {
+                "title": "Conseils Photo : L'éclairage pour des portraits parfaits",
+                "excerpt": "Maîtrisez l'art de l'éclairage de portrait avec ces conseils professionnels. De la lumière naturelle aux installations de studio, nous couvrons tout."
+            },
+            "4": {
+                "title": "Nouvel Équipement : Test du Sony A7R V",
+                "excerpt": "Notre test pratique du dernier appareil photo hybride Sony. Vaut-il le coup ? Découvrez ce que nous en pensons."
+            },
+            "5": {
+                "title": "Pleins feux sur les clients : Mariage de Marie & Thomas",
+                "excerpt": "Une belle histoire d'amour capturée à travers notre objectif. Découvrez les moments forts de cette superbe cérémonie et célébration."
+            },
+            "6": {
+                "title": "Spécial Vacances : Cartes-cadeaux maintenant disponibles",
+                "excerpt": "Offrez des souvenirs en cadeau pour ces vacances. Nos cartes-cadeaux sont parfaites pour toutes les occasions et n'expirent jamais."
+            }
+        }
+    },
+    "home": {
+        "flashInfo": {
+            "title": "VENTE FLASH : Promo 1000f",
+            "subtitle": "Offre à durée limitée sur toutes les séances en studio.",
+            "button": "Profiter de l'offre",
+            "whatsappMessage": "Bonjour, je souhaite profiter de l'offre Vente Flash (Promo 1000f) pour les séances en studio."
+        },
+        "promoBubble": {
+            "text": "Découvrez nos forfaits exceptionnels !",
+            "tooltip": "Voir les forfaits"
+        },
+        "pricing": {
+            "title": "Nos Forfaits",
+            "subtitle": "Des offres claires et transparentes adaptées à tous vos besoins.",
+            "overline": "TARIFS",
+            "recommended": "Recommandé",
+            "whatsappTemplate": "Bonjour, je souhaite réserver le forfait {{title}} au prix de {{price}}.",
+            "packages": {
+                "discovery": {
+                    "title": "Forfait Découverte",
+                    "price": "50.000 FCFA",
+                    "description": "Idéal pour une première expérience ou des besoins simples.",
+                    "features": [
+                        "1 Heure de shooting",
+                        "1 Tenue",
+                        "5 Photos retouchées HD",
+                        "Galerie privée en ligne"
+                    ],
+                    "button": "Réserver"
+                },
+                "premium": {
+                    "title": "Forfait Premium",
+                    "price": "100.000 FCFA",
+                    "description": "Notre best-seller pour des souvenirs inoubliables.",
+                    "features": [
+                        "2 Heures de shooting",
+                        "3 Tenues",
+                        "15 Photos retouchées HD",
+                        "Maquillage inclus",
+                        "Galerie privée en ligne"
+                    ],
+                    "button": "Choisir ce forfait"
+                },
+                "Mon": {
+                    "title": "Forfait Mon",
+                    "price": "250.000 FCFA",
+                    "description": "L'expérience complète pour les professionnels et les grands événements.",
+                    "features": [
+                        "Demi-journée de shooting",
+                        "Tenues illimitées",
+                        "30 Photos retouchées HD",
+                        "Tous les fichiers sources",
+                        "Maquillage & Coiffure inclus"
+                    ],
+                    "button": "Nous contacter"
+                }
+            }
+        },
+        "services": {
+            "title": "Nos Activités",
+            "subtitle": "Des services complets pour tous vos besoins en photographie",
+            "shooting": {
+                "title": "Le Shooting (Prise de vue)",
+                "description": "Nous capturons vos moments précieux avec professionnalisme et créativité",
+                "details": [
+                    "Portraits (professionnels, famille)",
+                    "Mode & Lookbook",
+                    "Produit (packshot)",
+                    "Événementiel (mariage, corporate)"
+                ],
+                "cta": "Je souhaite réserver un shooting",
+                "whatsapp": "Bonjour, je souhaite réserver un shooting."
+            },
+            "postProduction": {
+                "title": "La Post-production",
+                "description": "Sublimez vos images grâce à notre expertise en retouche",
+                "details": [
+                    "Retouche photo avancée",
+                    "Détourage professionnel",
+                    "Restauration de vieilles photos",
+                    "Correction colorimétrique"
+                ],
+                "cta": "Je souhaite confier mes photos pour retouche",
+                "whatsapp": "Bonjour, je souhaite confier mes photos pour retouche."
+            },
+            "training": {
+                "title": "La Formation",
+                "description": "Apprenez les techniques professionnelles de la photographie",
+                "details": [
+                    "Stages photo intensifs",
+                    "Cours de base pour débutants",
+                    "Masterclass avancée",
+                    "Formation en studio"
+                ],
+                "cta": "Je souhaite bénéficier d'une formation",
+                "whatsapp": "Bonjour, je souhaite bénéficier d'une formation."
+            },
+            "rental": {
+                "title": "La Location",
+                "description": "Louez notre studio et notre matériel professionnel",
+                "details": [
+                    "Location de plateau photo",
+                    "Matériel haut de gamme",
+                    "Éclairage professionnel",
+                    "Tarifs horaires flexibles"
+                ],
+                "cta": "Je souhaite louer le studio",
+                "whatsapp": "Bonjour, je souhaite louer le studio."
+            }
+        },
+        "skillset": {
+            "overline": "MES COMPÉTENCES",
+            "title": "Je suis très talentueux. Découvrez ce que je peux faire !",
+            "skills": {
+                "portraits": {
+                    "title": "Portraits",
+                    "desc": "Portraits professionnels et artistiques capturant la personnalité."
+                },
+                "landscapes": {
+                    "title": "Paysages",
+                    "desc": "Photographie environnementale et architecturale époustouflante."
+                },
+                "commercial": {
+                    "title": "Commercial",
+                    "desc": "Imagerie à fort impact pour les marques, produits et besoins corporate."
+                },
+                "weddings": {
+                    "title": "Mariages",
+                    "desc": "Documentation intemporelle de vos moments les plus spéciaux."
+                }
+            }
+        },
+        "testimonials": {
+            "overline": "TÉMOIGNAGES",
+            "title": "Ce que disent nos clients",
+            "subtitle": "La satisfaction de nos clients est notre plus belle récompense.",
+            "items": {
+                "1": {
+                    "name": "Sarah & Julien",
+                    "role": "Mariage",
+                    "content": "Mon Studios a su capturer l'essence même de notre mariage. Les photos sont naturelles, lumineuses et pleines d'émotion. Un grand merci à toute l'équipe pour leur professionnalisme !"
+                },
+                "2": {
+                    "name": "Marc Dubois",
+                    "role": "Directeur Marketing, TechCorp",
+                    "content": "Nous avons fait appel à eux pour nos portraits d'entreprise et le résultat est impeccable. Le studio est moderne et l'équipe met tout le monde à l'aise. Je recommande vivement."
+                },
+                "3": {
+                    "name": "Elodie Martin",
+                    "role": "Shooting Mode",
+                    "content": "Une expérience incroyable ! Le photographe a su me guider tout au long de la séance. Les retouches sont subtiles et mettent vraiment en valeur. J'adore mon book !"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,117 @@
+@import './pages.css';
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+    margin-top: var(--space-xl);
+}
+
+.event-card {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-gray-light);
+    transition: all var(--transition-normal);
+}
+
+.event-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+    border-color: var(--color-orange-light);
+}
+
+.event-card--no-image {
+    grid-template-columns: 1fr;
+}
+
+.event-card__type-inline {
+    display: inline-block;
+    background: var(--color-orange);
+    color: var(--color-white);
+    padding: 0.25rem 1rem;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: var(--space-md);
+    align-self: flex-start;
+}
+
+.event-card__media {
+    position: relative;
+    height: 100%;
+}
+
+.event-card__type {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: var(--color-orange);
+    color: var(--color-white);
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: var(--shadow-sm);
+    z-index: 2;
+}
+
+.event-card__body {
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-card__date {
+    color: var(--color-orange);
+    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.event-card__title {
+    font-size: 1.75rem;
+    color: var(--color-blue);
+    margin-bottom: var(--space-sm);
+}
+
+.event-card__lieu {
+    color: var(--color-gray);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    font-size: 0.95rem;
+}
+
+.event-card__desc {
+    color: var(--color-gray-dark);
+    line-height: 1.6;
+    margin-bottom: var(--space-xl);
+}
+
+@media (max-width: 1023px) {
+    .event-card {
+        grid-template-columns: 1fr;
+    }
+
+    .event-card__media {
+        height: 250px;
+    }
+}
+
+@media (max-width: 639px) {
+    .event-card__body {
+        padding: var(--space-xl);
+    }
+
+    .event-card__title {
+        font-size: 1.4rem;
+    }
+}

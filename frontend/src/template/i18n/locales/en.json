@@ -1,0 +1,356 @@
+{
+    "hero": {
+        "slides": {
+            "1": {
+                "title": "Capturing Life's",
+                "highlight": "Moments",
+                "description": "Professional photography for weddings, events, and corporate needs. Book your session today.",
+                "miniDesc": "CHOOSE US TO IMMORTALIZE YOUR PRECIOUS MOMENTS IN PRICELESS AND IMMERSIVE WORKS OF VISUAL ART"
+            },
+            "2": {
+                "title": "Reveal Your",
+                "highlight": "True Self",
+                "description": "Studio portraits that tell your unique story with style and elegance.",
+                "miniDesc": "EXPERT LIGHTING AND COMPOSITION TO BRING OUT THE BEST VERSION OF YOU"
+            },
+            "3": {
+                "title": "Unforgettable",
+                "highlight": "Events",
+                "description": "We capture the energy and emotion of your special occasions.",
+                "miniDesc": "FROM INTIMATE GATHERINGS TO GRAND CELEBRATIONS, WE DOCUMENT EVERY DETAIL"
+            }
+        },
+        "buttons": {
+            "viewPortfolio": "View Portfolio",
+            "bookSession": "Book a Session"
+        }
+    },
+    "navbar": {
+        "home": "Home",
+        "portfolio": "Portfolio",
+        "shop": "Shop",
+        "blog": "Blog",
+        "about": "About",
+        "contact": "Contact",
+        "admin": "Admin",
+        "logout": "Logout",
+        "login": "Login",
+        "signup": "Sign Up"
+    },
+    "footer": {
+        "description": "{{siteName}} is a professional photography and videography studio located in Douala, Cameroon.",
+        "quickLinks": "Quick Links",
+        "contactUs": "Contact Us",
+        "rights": "All rights reserved.",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfService": "Terms of Service"
+    },
+    "about": {
+        "title": "ABOUT",
+        "founder": "The Founder",
+        "biography": "Biography",
+        "bio1": "Passionate about imagery for over 10 years, I founded Ultimata Studios with a simple vision: to capture authenticity. My journey has taken me from street photography to fashion studios, forging a unique style that blends spontaneity and technical mastery.",
+        "bio2": "I have had the privilege of working with prestigious brands and documenting hundreds of love and success stories. Today, I put this experience at the service of your projects.",
+        "philosophy": "My Philosophy",
+        "quote": "\"Every image must tell a story.\"",
+        "philosophyDesc": "My approach is based on listening and connection. I don't just take a photo; I seek to understand who you are to reveal it through my lens. Whether for a corporate portrait or a wedding, I prioritize natural light and true emotions, while bringing a polished editorial touch in post-production."
+    },
+    "portfolio": {
+        "title": "Our Portfolio",
+        "subtitle": "Explore our latest work across various categories.",
+        "categories": {
+            "all": "All Work",
+            "weddings": "Weddings",
+            "maternity": "Maternity",
+            "babies": "Babies & Kids",
+            "corporate": "Corporate",
+            "events": "Events",
+            "studio": "Studio"
+        }
+    },
+    "shop": {
+        "title": "Shop Products",
+        "version": "Blueprint Mode / v1.0",
+        "checkout": "Checkout",
+        "categories": {
+            "all": "All",
+            "prints": "Prints",
+            "frames": "Frames",
+            "goodies": "Goodies",
+            "secondHand": "Second-Hand"
+        },
+        "products": {
+            "printA4": "Professional Print A4",
+            "frameBlack": "Gallery Frame Black",
+            "filmRoll": "Film Roll Pack",
+            "cameraLens": "Vintage Camera Lens",
+            "lightingKit": "Studio Lighting Kit",
+            "photoPaper": "Matte Photo Paper",
+            "tripod": "Tripod Stand",
+            "cleaningKit": "Lens Cleaning Kit"
+        },
+        "buttons": {
+            "addToCart": "Add to Cart",
+            "buyOnChariow": "Buy on Chariow",
+            "orderOnWhatsApp": "Order on WhatsApp"
+        },
+        "cart": {
+            "title": "Your Cart",
+            "empty": "Your cart is empty",
+            "emptyDesc": "Looks like you haven't added anything to your cart yet.",
+            "continueShopping": "Continue Shopping",
+            "subtotal": "Subtotal",
+            "checkoutWhatsApp": "Order via WhatsApp"
+        },
+        "orderForm": {
+            "title": "Finalize Order",
+            "name": "Name",
+            "phone": "Phone",
+            "nameRequired": "Name is required",
+            "phoneRequired": "Phone is required",
+            "yourOrder": "Your order:",
+            "cancel": "Cancel",
+            "submit": "Order on WhatsApp",
+            "whatsappMessage": "Hello, I would like to order:\n"
+        }
+    },
+    "contact": {
+        "title": "Get in Touch",
+        "info": {
+            "address": "Address",
+            "phone": "+237 698 399 985",
+            "email": "Email"
+        },
+        "form": {
+            "title": "Send us a message",
+            "name": "Name",
+            "email": "Email",
+            "subject": "Subject",
+            "message": "Message",
+            "submit": "Send on WhatsApp",
+            "errors": {
+                "name": "Name is required",
+                "email": "Valid email required",
+                "subject": "Subject is required",
+                "message": "Message is required"
+            }
+        }
+    },
+    "auth": {
+        "login": {
+            "title": "Login",
+            "subtitle": "Access your Ultimate Studio space",
+            "email": "Email",
+            "password": "Password",
+            "submit": "Sign In",
+            "noAccount": "Don't have an account?",
+            "signup": "Sign Up",
+            "error": "An error occurred during login."
+        },
+        "signup": {
+            "title": "Sign Up",
+            "subtitle": "Join the Ultimate Studio adventure",
+            "name": "Full Name",
+            "email": "Email",
+            "password": "Password",
+            "confirmPassword": "Confirm Password",
+            "submit": "Sign Up",
+            "hasAccount": "Already have an account?",
+            "login": "Log In",
+            "error": "An error occurred during sign up.",
+            "passwordMismatch": "Passwords do not match."
+        }
+    },
+    "blog": {
+        "title": "Latest News & Updates",
+        "subtitle": "Stay updated with our latest projects, photography tips, special offers, and behind-the-scenes stories.",
+        "categories": {
+            "all": "All",
+            "news": "News",
+            "tutorials": "Tutorials",
+            "promos": "Promos",
+            "behindTheScenes": "Behind the Scenes"
+        },
+        "articles": {
+            "1": {
+                "title": "FLASH SALE: 1000f Promo for All Sessions",
+                "excerpt": "Limited time offer! Get our professional photography services at an unbeatable price. Book now and save on weddings, events, and corporate shoots."
+            },
+            "2": {
+                "title": "Behind the Lens: Our Latest Wedding Shoot",
+                "excerpt": "Take a peek behind the scenes of our recent beach wedding photoshoot. Learn about our process and the magic we create."
+            },
+            "3": {
+                "title": "Photography Tips: Lighting for Perfect Portraits",
+                "excerpt": "Master the art of portrait lighting with these professional tips. From natural light to studio setups, we cover it all."
+            },
+            "4": {
+                "title": "New Equipment: Sony A7R V Review",
+                "excerpt": "Our hands-on review of the latest Sony mirrorless camera. Is it worth the upgrade? Find out what we think."
+            },
+            "5": {
+                "title": "Client Spotlight: Marie & Thomas Wedding",
+                "excerpt": "A beautiful love story captured through our lens. See highlights from this stunning ceremony and celebration."
+            },
+            "6": {
+                "title": "Holiday Special: Gift Cards Now Available",
+                "excerpt": "Give the gift of memories this holiday season. Our gift cards are perfect for any occasion and never expire."
+            }
+        }
+    },
+    "home": {
+        "flashInfo": {
+            "title": "FLASH SALE: 1000f Promo",
+            "subtitle": "Limited time offer on all studio sessions.",
+            "button": "Claim Offer",
+            "whatsappMessage": "Hello, I would like to take advantage of the Flash Sale offer (1000f Promo) for studio sessions."
+        },
+        "promoBubble": {
+            "text": "Check out our amazing packages!",
+            "tooltip": "View Packages"
+        },
+        "pricing": {
+            "title": "Our Packages",
+            "subtitle": "Clear and transparent offers adapted to all your needs.",
+            "overline": "PRICING",
+            "recommended": "Recommended",
+            "whatsappTemplate": "Hello, I would like to book the {{title}} package at {{price}}.",
+            "packages": {
+                "discovery": {
+                    "title": "Discovery Package",
+                    "price": "50,000 FCFA",
+                    "description": "Ideal for a first experience or simple needs.",
+                    "features": [
+                        "1 Hour of shooting",
+                        "1 Outfit",
+                        "5 HD retouched photos",
+                        "Private online gallery"
+                    ],
+                    "button": "Book Now"
+                },
+                "premium": {
+                    "title": "Premium Package",
+                    "price": "100,000 FCFA",
+                    "description": "Our best-seller for unforgettable memories.",
+                    "features": [
+                        "2 Hours of shooting",
+                        "3 Outfits",
+                        "15 HD retouched photos",
+                        "Makeup included",
+                        "Private online gallery"
+                    ],
+                    "button": "Choose this package"
+                },
+                "ultimate": {
+                    "title": "Ultimate Package",
+                    "price": "250,000 FCFA",
+                    "description": "The complete experience for professionals and grand events.",
+                    "features": [
+                        "Half-day of shooting",
+                        "Unlimited outfits",
+                        "30 HD retouched photos",
+                        "All source files",
+                        "Makeup & Hair included"
+                    ],
+                    "button": "Contact Us"
+                }
+            }
+        },
+        "services": {
+            "title": "Our Activities",
+            "subtitle": "Complete services for all your photography needs",
+            "shooting": {
+                "title": "Shooting (Photography)",
+                "description": "We capture your precious moments with professionalism and creativity",
+                "details": [
+                    "Portraits (professional, family)",
+                    "Fashion & Lookbook",
+                    "Product (packshot)",
+                    "Events (wedding, corporate)"
+                ],
+                "cta": "I want to book a shooting",
+                "whatsapp": "Hello, I would like to book a shooting."
+            },
+            "postProduction": {
+                "title": "Post-production",
+                "description": "Enhance your images with our retouching expertise",
+                "details": [
+                    "Advanced photo retouching",
+                    "Professional clipping",
+                    "Old photo restoration",
+                    "Color correction"
+                ],
+                "cta": "I want to entrust my photos for retouching",
+                "whatsapp": "Hello, I would like to entrust my photos for retouching."
+            },
+            "training": {
+                "title": "Training",
+                "description": "Learn professional photography techniques",
+                "details": [
+                    "Intensive photo workshops",
+                    "Basic courses for beginners",
+                    "Advanced masterclass",
+                    "Studio training"
+                ],
+                "cta": "I want to benefit from training",
+                "whatsapp": "Hello, I would like to benefit from training."
+            },
+            "rental": {
+                "title": "Rental",
+                "description": "Rent our studio and professional equipment",
+                "details": [
+                    "Photo studio rental",
+                    "High-end equipment",
+                    "Professional lighting",
+                    "Flexible hourly rates"
+                ],
+                "cta": "I want to rent the studio",
+                "whatsapp": "Hello, I would like to rent the studio."
+            }
+        },
+        "skillset": {
+            "overline": "MY SKILLSET",
+            "title": "I'm very talented. Check what I can do!",
+            "skills": {
+                "portraits": {
+                    "title": "Portraits",
+                    "desc": "Professional headshots and artistic portraits capturing personality."
+                },
+                "landscapes": {
+                    "title": "Landscapes",
+                    "desc": "Breathtaking environmental and architectural photography."
+                },
+                "commercial": {
+                    "title": "Commercial",
+                    "desc": "High-impact imagery for brands, products, and corporate needs."
+                },
+                "weddings": {
+                    "title": "Weddings",
+                    "desc": "Timeless documentation of your most special moments."
+                }
+            }
+        },
+        "testimonials": {
+            "overline": "TESTIMONIALS",
+            "title": "What our clients say",
+            "subtitle": "Our clients' satisfaction is our greatest reward.",
+            "items": {
+                "1": {
+                    "name": "Sarah & Julien",
+                    "role": "Wedding",
+                    "content": "Ultimata Studios captured the very essence of our wedding. The photos are natural, bright and full of emotion. A big thank you to the whole team for their professionalism!"
+                },
+                "2": {
+                    "name": "Marc Dubois",
+                    "role": "Marketing Director, TechCorp",
+                    "content": "We called on them for our corporate portraits and the result is impeccable. The studio is modern and the team puts everyone at ease. I highly recommend."
+                },
+                "3": {
+                    "name": "Elodie Martin",
+                    "role": "Fashion Shooting",
+                    "content": "An incredible experience! The photographer guided me throughout the session. The retouching is subtle and really enhances. I love my book!"
+                }
+            }
+        }
+    }
+}
