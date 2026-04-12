@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "ifpmeb_backend/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
+    }
+  ],
+  "functions": {
+    "ifpmeb_backend/wsgi.py": {
+      "runtime": "python3.12",
+      "maxDuration": 15
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "ifpmeb_backend/wsgi.py"
+    },
+    {
+      "src": "/media/(.*)",
+      "dest": "media/$1"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "ifpmeb_backend/wsgi.py"
+    }
+  ],
+  "buildCommand": "./build.sh"
+}
