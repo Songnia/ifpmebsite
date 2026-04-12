@@ -2,17 +2,16 @@
   "version": 2,
   "builds": [
     {
+      "src": "build.sh",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "staticfiles" }
+    },
+    {
       "src": "ifpmeb_backend/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
     }
   ],
-  "functions": {
-    "ifpmeb_backend/wsgi.py": {
-      "runtime": "python3.12",
-      "maxDuration": 15
-    }
-  },
   "routes": [
     {
       "src": "/api/(.*)",
@@ -30,6 +29,5 @@
       "src": "/(.*)",
       "dest": "ifpmeb_backend/wsgi.py"
     }
-  ],
-  "buildCommand": "./build.sh"
+  ]
 }
