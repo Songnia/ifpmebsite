@@ -175,6 +175,7 @@ textarea {
 .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center; /* Centrage horizontal du contenu */
     gap: var(--space-sm);
     padding: 0.75rem 1.75rem;
     border-radius: var(--radius-pill);

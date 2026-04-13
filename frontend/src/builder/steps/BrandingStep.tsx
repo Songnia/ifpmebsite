@@ -14,6 +14,14 @@ interface BrandingStepProps {
 
 const colorPresets = [
   {
+    name: "IFPMEB",
+    primary: "#003366",
+    secondary: "#f8f9fa",
+    accent: "#FDB913",
+    background: "#ffffff",
+    text: "#1a1a1a"
+  },
+  {
     name: "Classique",
     primary: "#1a1a1a",
     secondary: "#f5f5f5",

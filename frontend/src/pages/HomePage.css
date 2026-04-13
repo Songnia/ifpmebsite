@@ -360,6 +360,39 @@
         min-height: 60vh;
     }
 
+    /* Ajustement du texte de la section Hero */
+    .hero__title {
+        font-size: 2.2rem; /* Texte plus petit pour éviter de prendre tout l'écran */
+        line-height: 1.1;
+        margin-bottom: var(--space-md);
+    }
+
+    .hero__subtitle {
+        font-size: 1rem;
+        margin-bottom: var(--space-lg);
+        line-height: 1.5;
+    }
+
+    .hero__eyebrow {
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Ajustement des boutons de la section Hero */
+    .hero__actions {
+        flex-direction: column;
+        gap: 10px; /* Moins d'espace entre les boutons */
+        width: 100%;
+    }
+
+    .hero__actions .btn {
+        width: 100%; /* Boutons en pleine largeur */
+        text-align: center;
+        padding: 0.7rem 1rem; /* Boutons moins hauts */
+        font-size: 0.85rem; /* Texte des boutons plus petit */
+        justify-content: center;
+    }
+
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }

@@ -223,6 +223,23 @@ export function PortfolioStep({ config, onAddPhoto, onAddPhotos, onRemovePhoto, 
                 <DialogTitle>Ajouter une photo</DialogTitle>
               </DialogHeader>
               <div className="space-y-4 pt-4">
+
+                {/* Catégorie */}
+                <div className="space-y-2">
+                  <Label htmlFor="photoCategory">Catégorie *</Label>
+                  <select
+                    id="photoCategory"
+                    value={newPhoto.category}
+                    onChange={(e) => setNewPhoto(prev => ({ ...prev, category: e.target.value }))}
+                    className="w-full px-3 py-2 border rounded-md"
+                    required
+                  >
+                    <option value="">Sélectionner une catégorie</option>
+                    {categories.map(cat => (
+                      <option key={cat} value={cat}>{cat}</option>
+                    ))}
+                  </select>
+                </div>
                 {/* Upload */}
                 <input
                   ref={fileInputRef}
@@ -269,22 +286,7 @@ export function PortfolioStep({ config, onAddPhoto, onAddPhotos, onRemovePhoto, 
                   </div>
                 )}
 
-                {/* Catégorie */}
-                <div className="space-y-2">
-                  <Label htmlFor="photoCategory">Catégorie *</Label>
-                  <select
-                    id="photoCategory"
-                    value={newPhoto.category}
-                    onChange={(e) => setNewPhoto(prev => ({ ...prev, category: e.target.value }))}
-                    className="w-full px-3 py-2 border rounded-md"
-                    required
-                  >
-                    <option value="">Sélectionner une catégorie</option>
-                    {categories.map(cat => (
-                      <option key={cat} value={cat}>{cat}</option>
-                    ))}
-                  </select>
-                </div>
+                
 
                 <Button
                   onClick={handleAddPhoto}

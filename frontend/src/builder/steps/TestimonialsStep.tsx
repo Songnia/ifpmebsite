@@ -307,8 +307,8 @@ function EditTestimonialForm({
       </div>
       <div className="flex gap-2">
         <Button onClick={() => onSave(formData)} className="flex-1 bg-green-500 hover:bg-green-600 text-white">
-          <Check className="w-4 h-4 mr-2" />
-          Enregistrer
+          <Check className="w-4 h-4 mr-1"/>
+          Save
         </Button>
         <Button variant="outline" onClick={onCancel}>
           Annuler

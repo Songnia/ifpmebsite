@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useConfig } from '@/context/ConfigContext';
 import { useAuth } from '@/context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 // Components
 import { AdminSidebar } from '@/components/admin/AdminSidebar';
@@ -26,25 +26,43 @@ type AdminView = 'dashboard' | 'builder';
 
 export default function AdminPage() {
     // Navigation State
-    const [activeView, setActiveView] = useState<AdminView>('builder');
+    const [searchParams, setSearchParams] = useSearchParams();
+    
+    // activeView synchronisé avec l'URL ?view=...
+    const urlView = searchParams.get('view') as AdminView;
+    const [activeView, setActiveView] = useState<AdminView>(urlView || 'builder');
+    
     const [hasRedirected, setHasRedirected] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Mobile toggle
     
-    // Builder State
-    const [currentStep, setCurrentStep] = useState(0);
+    // Builder State - Initialisé depuis localStorage si disponible
+    const [currentStep, setCurrentStep] = useState(() => {
+        const saved = localStorage.getItem('ifpmeb_builder_step');
+        return saved ? parseInt(saved, 10) : 0;
+    });
     
     // Contexts & Hooks
     const { config, updateConfig, resetConfig } = useConfig();
     const { logout } = useAuth();
     const navigate = useNavigate();
 
-    // Redirection logique : Dashboard si site déjà publié
+    // Synchronisation activeView -> URL
     useEffect(() => {
-        if (!hasRedirected && config.siteName) {
+        setSearchParams({ view: activeView }, { replace: true });
+    }, [activeView, setSearchParams]);
+
+    // Sauvegarde currentStep -> localStorage
+    useEffect(() => {
+        localStorage.setItem('ifpmeb_builder_step', currentStep.toString());
+    }, [currentStep]);
+
+    // Redirection logique : Dashboard si site déjà publié (seulement au tout premier chargement si pas d'URL specifiée)
+    useEffect(() => {
+        if (!hasRedirected && !urlView && config.siteName) {
             setActiveView('dashboard');
             setHasRedirected(true);
         }
-    }, [config.siteName, hasRedirected]);
+    }, [config.siteName, hasRedirected, urlView]);
 
     const handleLogout = () => {
         logout();

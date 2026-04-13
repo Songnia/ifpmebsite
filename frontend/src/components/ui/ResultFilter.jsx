@@ -2,14 +2,14 @@ import { useState } from 'react';
 import './ResultFilter.css';
 
 /**
- * ResultFilter – Dropdowns to filter results by year and exam type.
+ * ResultFilter – Dropdowns to filter results by year and program.
  */
-export default function ResultFilter({ onFilter }) {
+export default function ResultFilter({ onFilter, years = [], programs = [] }) {
     const [year, setYear] = useState('');
-    const [examType, setExamType] = useState('');
+    const [program, setProgram] = useState('');
 
     const handleFilter = () => {
-        if (onFilter) onFilter({ year, examType });
+        if (onFilter) onFilter({ year, program });
     };
 
     return (
@@ -23,23 +23,23 @@ export default function ResultFilter({ onFilter }) {
                     onChange={e => setYear(e.target.value)}
                 >
                     <option value="">Toutes les années</option>
-                    <option value="2025">[ANNÉE_1]</option>
-                    <option value="2024">[ANNÉE_2]</option>
-                    <option value="2023">[ANNÉE_3]</option>
+                    {years.map(y => (
+                        <option key={y} value={y}>{y}</option>
+                    ))}
                 </select>
             </div>
             <div className="result-filter__group">
-                <label className="result-filter__label" htmlFor="filter-exam">Type d&apos;examen</label>
+                <label className="result-filter__label" htmlFor="filter-exam">Filière / Programme</label>
                 <select
                     id="filter-exam"
                     className="result-filter__select"
-                    value={examType}
-                    onChange={e => setExamType(e.target.value)}
+                    value={program}
+                    onChange={e => setProgram(e.target.value)}
                 >
-                    <option value="">Tous les examens</option>
-                    <option value="bts">[EXAMEN_1]</option>
-                    <option value="licence">[EXAMEN_2]</option>
-                    <option value="master">[EXAMEN_3]</option>
+                    <option value="">Toutes les filières</option>
+                    {programs.map(p => (
+                        <option key={p} value={p}>{p}</option>
+                    ))}
                 </select>
             </div>
             <button className="btn btn-primary result-filter__btn" onClick={handleFilter}>

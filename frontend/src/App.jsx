@@ -5,6 +5,9 @@ import './components/layout/Navbar.css';
 import './components/layout/Footer.css';
 import './styles/globals.css';
 
+import ScrollToTop from './components/ui/ScrollToTop';
+import ScrollToTopOnNav from './components/ui/ScrollToTopOnNav';
+
 import HomePage from './pages/HomePage';
 import FormationsPage from './pages/FormationsPage';
 import FormationDetailPage from './pages/FormationDetailPage';
@@ -39,12 +42,14 @@ export default function App() {
     <AuthProvider>
       <ConfigProvider>
         <BrowserRouter>
+          <ScrollToTopOnNav />
           <Routes>
             {/* Public Routes with Navbar/Footer */}
             <Route element={
               <>
                 <Navbar />
                 <Outlet />
+                <ScrollToTop />
                 <Footer />
               </>
             }>

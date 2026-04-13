@@ -40,18 +40,20 @@ export default function ResultatsPage() {
         return () => observer.disconnect();
     }, []);
 
-    const handleFilter = ({ year, examType }) => {
-        const typeMap = { 'bts': 'BTS', 'licence': 'Licence', 'master': 'Master' };
+    // Extract unique years and programs for dynamic filters
+    const availableYears = [...new Set(rawResults.map(r => r.year))].sort((a, b) => b.localeCompare(a));
+    const availablePrograms = [...new Set(rawResults.map(r => r.examName))].sort();
 
+    const handleFilter = ({ year, program }) => {
         setFilterInfo({
             year: year || 'Toutes les années',
-            examType: examType ? typeMap[examType] : 'Tous les examens'
+            program: program || 'Toutes les filières'
         });
 
         const results = rawResults.filter(item => {
             const matchYear = year ? item.year === year : true;
-            const matchType = examType ? item.examType === examType : true;
-            return matchYear && matchType;
+            const matchProgram = program ? item.examName === program : true;
+            return matchYear && matchProgram;
         });
 
         setFiltered(results);
@@ -70,13 +72,17 @@ export default function ResultatsPage() {
                 <div className="container">
 
                     <div className="res-filter-wrapper reveal">
-                        <ResultFilter onFilter={handleFilter} />
+                        <ResultFilter 
+                            onFilter={handleFilter} 
+                            years={availableYears} 
+                            programs={availablePrograms} 
+                        />
                     </div>
 
                     <div className="res-dashboard">
                         <div className="res-header reveal">
                             <h2 className="res-header__title">
-                                Résultats – <span className="text-orange">{filterInfo.examType}</span> / <span className="text-blue">{filterInfo.year}</span>
+                                Résultats – <span className="text-orange">{filterInfo.program}</span> / <span className="text-blue">{filterInfo.year}</span>
                             </h2>
                             {filtered.length > 0 && (
                                 <button className="btn btn-outline-blue btn-download" onClick={(e) => e.preventDefault()}>

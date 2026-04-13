@@ -88,23 +88,23 @@ export default function InscriptionPage() {
                             <form className="inscription-form" onSubmit={handleSubmit}>
                                 <div className="form-group row">
                                     <div className="input-field">
-                                        <label htmlFor="firstname">Prénom *</label>
-                                        <input type="text" id="firstname" name="firstname" required placeholder="Ex: Jean" />
+                                        <label htmlFor="lastname">Nom *</label>
+                                        <input type="text" id="lastname" name="lastname" required placeholder="Ex: Koudou" />
                                     </div>
                                     <div className="input-field">
-                                        <label htmlFor="lastname">Nom *</label>
-                                        <input type="text" id="lastname" name="lastname" required placeholder="Ex: Dupont" />
+                                        <label htmlFor="firstname">Prénom *</label>
+                                        <input type="text" id="firstname" name="firstname" required placeholder="Ex: Tresor" />
                                     </div>
                                 </div>
 
                                 <div className="form-group row">
                                     <div className="input-field">
                                         <label htmlFor="email">Email *</label>
-                                        <input type="email" id="email" name="email" required placeholder="jean.dupont@email.com" />
+                                        <input type="email" id="email" name="email" required placeholder="[EMAIL_ADDRESS]" />
                                     </div>
                                     <div className="input-field">
                                         <label htmlFor="phone">Téléphone *</label>
-                                        <input type="tel" id="phone" name="phone" required placeholder="+228 XX XX XX XX" />
+                                        <input type="tel" id="phone" name="phone" required placeholder="+237 699 99 99 99" />
                                     </div>
                                 </div>
 
