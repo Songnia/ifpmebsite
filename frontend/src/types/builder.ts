@@ -26,6 +26,7 @@ export interface Formation {
   level: string; // ex: "BAC+2"
   domain: string; // ex: "Banque & Finance"
   price: string;
+  installments?: { name: string; amount: string }[];
   features: string[]; // ex: ["Stage inclus", "Certification"]
   image?: string;
 }
@@ -61,6 +62,7 @@ export interface SiteConfig {
   description: string;
   logo?: string;
   whatsappNumber: string;
+  registrationFee?: string;
 
   // Couleurs institutionnelles
   primaryColor: string; // Bleu IFPMEB
@@ -141,6 +143,7 @@ export const defaultSiteConfig: SiteConfig = {
   tagline: "",
   description: "",
   whatsappNumber: "",
+  registrationFee: "",
 
   primaryColor: "#1d3557",
   secondaryColor: "#ffb703",

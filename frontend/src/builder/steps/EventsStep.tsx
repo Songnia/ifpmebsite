@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Plus, X, Calendar, MapPin, Edit2, Check, Upload, Image as ImageIcon } from 'lucide-react';
+import { Plus, X, Calendar, MapPin, Edit2, Check, Upload, Image as ImageIcon, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -44,6 +44,12 @@ export function EventsStep({
     const handleRemove = (id: string) => {
         onRemoveEvent(id);
         setEvents(prev => prev.filter(e => e.id !== id));
+    };
+
+    const handleDuplicate = (ev: AcademicEvent) => {
+        const { id, ...dataToCopy } = ev;
+        const duplicatedData = { ...dataToCopy, title: `${dataToCopy.title} (Copie)` };
+        handleAdd(duplicatedData);
     };
 
     const handleUpdate = (id: string, updates: Partial<AcademicEvent>) => {
@@ -110,10 +116,13 @@ export function EventsStep({
                                         </div>
                                     </div>
                                     <div className="flex gap-1">
-                                        <Button variant="ghost" size="icon" onClick={() => setEditingId(ev.id)}>
+                                        <Button variant="ghost" size="icon" onClick={() => handleDuplicate(ev)} title="Dupliquer">
+                                            <Copy className="w-4 h-4 text-blue-500" />
+                                        </Button>
+                                        <Button variant="ghost" size="icon" onClick={() => setEditingId(ev.id)} title="Modifier">
                                             <Edit2 className="w-4 h-4" />
                                         </Button>
-                                        <Button variant="ghost" size="icon" onClick={() => handleRemove(ev.id)}>
+                                        <Button variant="ghost" size="icon" onClick={() => handleRemove(ev.id)} title="Supprimer">
                                             <X className="w-4 h-4 text-red-500" />
                                         </Button>
                                     </div>

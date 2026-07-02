@@ -39,6 +39,9 @@ export default function TrainingCard({ id, title, description, duration, level, 
                     {level && <span>🎓 {level}</span>}
                     {price && <span className="training-card__price">{price}</span>}
                 </div>
+                <div style={{ marginTop: '0.75rem', fontSize: '0.8rem', fontWeight: '600', color: 'var(--color-primary-orange)', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <span style={{ background: 'rgba(0, 51, 102, 0.1)', padding: '0.2rem 0.5rem', borderRadius: '4px', color: 'var(--color-primary-blue)' }}>Cours du jour / soir</span>
+                </div>
             </div>
             <div className="training-card__footer">
                 <Link to={`/formations/${id}`} className="btn btn-outline">En savoir plus</Link>

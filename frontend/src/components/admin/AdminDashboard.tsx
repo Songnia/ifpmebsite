@@ -34,21 +34,27 @@ export function AdminDashboard() {
   const { config } = useConfig();
   const [inscriptions, setInscriptions] = useState<Inscription[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
 
   useEffect(() => {
     const fetchInscriptions = async () => {
       try {
-        const response = await fetch('/api/inscriptions/', {
+        const response = await fetch('/api/v1/inscriptions/', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         });
         if (response.ok) {
           const data = await response.json();
-          setInscriptions(data);
+          setInscriptions(Array.isArray(data) ? data : data.results || []);
+          setFetchError(false);
+        } else {
+          console.error('Erreur API inscriptions :', response.status);
+          setFetchError(true);
         }
       } catch (error) {
         console.error('Failed to fetch inscriptions:', error);
+        setFetchError(true);
       } finally {
         setLoading(false);
       }
@@ -154,6 +160,13 @@ export function AdminDashboard() {
                       <div className="w-10 h-10 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin"></div>
                       <p className="text-sm text-gray-500 font-medium">Chargement des dossiers...</p>
                     </div>
+                  </td>
+                </tr>
+              ) : fetchError ? (
+                <tr>
+                  <td colSpan={6} className="px-6 py-12 text-center text-red-400">
+                    <p className="text-lg font-medium">Impossible de charger les inscriptions</p>
+                    <p className="text-sm">Vérifiez que le serveur backend est actif et rechargez la page.</p>
                   </td>
                 </tr>
               ) : inscriptions.length === 0 ? (

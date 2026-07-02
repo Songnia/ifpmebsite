@@ -1,10 +1,30 @@
-import { useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useConfig } from '@/context/ConfigContext';
 import './AdmissionTarifsPage.css';
 
 export default function AdmissionTarifsPage() {
     const { config } = useConfig();
     const formations = config.formations || [];
+
+    const [activeLevel, setActiveLevel] = useState('Tous');
+    const [activeDuration, setActiveDuration] = useState('Toutes');
+
+    const levels = useMemo(() => {
+        const unique = new Set(formations.map(f => f.level).filter(Boolean));
+        return ['Tous', ...Array.from(unique)];
+    }, [formations]);
+
+    const durations = useMemo(() => {
+        const unique = new Set(formations.map(f => f.duration).filter(Boolean));
+        return ['Toutes', ...Array.from(unique)];
+    }, [formations]);
+
+    const filteredFormations = useMemo(() => {
+        return formations.filter(f =>
+            (activeLevel === 'Tous' || f.level === activeLevel) &&
+            (activeDuration === 'Toutes' || f.duration === activeDuration)
+        );
+    }, [formations, activeLevel, activeDuration]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -70,9 +90,54 @@ export default function AdmissionTarifsPage() {
                         </div>*/}
                     {/*</div>*/}
 
+                    {/* Tarifs Filters */}
+                    {formations.length > 0 && (
+                        <div className="formations-filters" style={{ marginBottom: '2rem' }}>
+                            <div className="filter-group">
+                                <label className="filter-group__label">Examen / Niveau</label>
+                                <div className="filter-pills">
+                                    {levels.map(l => (
+                                        <button
+                                            key={l}
+                                            className={`filter-pill ${activeLevel === l ? 'filter-pill--active' : ''}`}
+                                            onClick={() => setActiveLevel(l)}
+                                        >
+                                            {l}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="filter-group">
+                                <label className="filter-group__label">Durée</label>
+                                <div className="filter-pills">
+                                    {durations.map(d => (
+                                        <button
+                                            key={d}
+                                            className={`filter-pill ${activeDuration === d ? 'filter-pill--active' : ''}`}
+                                            onClick={() => setActiveDuration(d)}
+                                        >
+                                            {d}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Tarifs Table */}
-                    <h2 className="section-title" style={{ marginBottom: '1rem' }}>Grille des tarifs</h2>
-                    <div className="divider-gold" />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                        <h2 className="section-title" style={{ margin: 0 }}>Grille des tarifs</h2>
+                        <span className="formations-count">{filteredFormations.length} résultat(s)</span>
+                    </div>
+                    <div className="divider-gold" style={{ marginBottom: '2rem' }} />
+                    
+                    {config.registrationFee && (
+                        <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6 rounded-r-md">
+                            <h3 className="font-bold text-orange-800 text-lg mb-1">Frais de dossier & d'inscription</h3>
+                            <p className="text-orange-700">Des frais uniques de <strong>{config.registrationFee}</strong> sont exigés pour la validation de tout dossier d'inscription, quelle que soit la formation choisie.</p>
+                        </div>
+                    )}
+
                     <div className="tarifs-table-wrapper">
                         <table className="results-table tarifs-table">
                             <thead>
@@ -84,18 +149,37 @@ export default function AdmissionTarifsPage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {formations.length > 0 ? (
-                                    formations.map((t, i) => (
+                                {filteredFormations.length > 0 ? (
+                                    filteredFormations.map((t, i) => (
                                         <tr key={t.id || i} className={i % 2 === 0 ? 'results-table__row--even' : ''}>
-                                            <td><strong>{t.title}</strong></td>
+                                            <td>
+                                                <strong>{t.title}</strong>
+                                                <div style={{ fontSize: '0.75rem', color: 'var(--color-primary-orange)', marginTop: '4px', fontWeight: '600' }}>
+                                                    Jour & Soir
+                                                </div>
+                                            </td>
                                             <td>{t.level}</td>
                                             <td>{t.duration}</td>
-                                            <td className="tarifs-table__price">{t.price}</td>
+                                            <td className="tarifs-table__price">
+                                                {t.price}
+                                                {t.installments && t.installments.length > 0 && (
+                                                    <div className="mt-2 text-xs text-left" style={{ color: 'var(--color-primary-blue)', fontWeight: 'normal' }}>
+                                                        <strong className="block mb-1">Tranches :</strong>
+                                                        <ul className="list-disc pl-4 space-y-0.5">
+                                                            {t.installments.map((inst, idx) => (
+                                                                <li key={idx}>
+                                                                    <span className="font-semibold">{inst.name}</span> : {inst.amount}
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))
                                 ) : (
                                     <tr>
-                                        <td colSpan="4" className="text-center py-6">Aucune formation enregistrée.</td>
+                                        <td colSpan="4" className="text-center py-6">Aucune formation ne correspond à vos critères.</td>
                                     </tr>
                                 )}
                             </tbody>

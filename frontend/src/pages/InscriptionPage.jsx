@@ -34,7 +34,7 @@ export default function InscriptionPage() {
         };
 
         try {
-            const response = await fetch('/api/inscriptions/', {
+            const response = await fetch('/api/v1/inscriptions/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ export default function InscriptionPage() {
                                 <div className="form-group row">
                                     <div className="input-field">
                                         <label htmlFor="email">Email *</label>
-                                        <input type="email" id="email" name="email" required placeholder="[EMAIL_ADDRESS]" />
+                                        <input type="email" id="email" name="email" required placeholder="koudoutresor@gmail.com" />
                                     </div>
                                     <div className="input-field">
                                         <label htmlFor="phone">Téléphone *</label>
@@ -164,6 +164,13 @@ export default function InscriptionPage() {
                             <p>Lundi - Vendredi<br />08:00 - 17:30</p>
                             <p>Samedi<br />08:00 - 12:30</p>
                         </div>
+
+                        {config.registrationFee && (
+                            <div className="info-block" style={{ backgroundColor: 'rgba(255, 183, 3, 0.1)', borderLeft: '4px solid var(--color-primary-orange)' }}>
+                                <h3 style={{ color: 'var(--color-primary-orange)' }}>Frais de dossier</h3>
+                                <p>Pour que votre inscription soit définitivement validée, des frais de dossier de <strong>{config.registrationFee}</strong> devront être réglés.</p>
+                            </div>
+                        )}
 
                         {config.whatsappNumber && (
                             <div className="info-block info-block--accent">

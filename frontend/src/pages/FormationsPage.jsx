@@ -8,6 +8,7 @@ export default function FormationsPage() {
     const formations = config.formations || [];
 
     const [activeDomain, setActiveDomain] = useState('Tous');
+    const [activeLevel, setActiveLevel] = useState('Tous');
     const [activeDuration, setActiveDuration] = useState('Toutes');
 
     // Extract unique domains and durations from formations
@@ -21,8 +22,14 @@ export default function FormationsPage() {
         return ['Toutes', ...Array.from(unique)];
     }, [formations]);
 
+    const levels = useMemo(() => {
+        const unique = new Set(formations.map(f => f.level).filter(Boolean));
+        return ['Tous', ...Array.from(unique)];
+    }, [formations]);
+
     const filtered = formations.filter(f =>
         (activeDomain === 'Tous' || f.domain === activeDomain) &&
+        (activeLevel === 'Tous' || f.level === activeLevel) &&
         (activeDuration === 'Toutes' || f.duration === activeDuration)
     );
 
@@ -59,6 +66,20 @@ export default function FormationsPage() {
                                             onClick={() => setActiveDomain(d)}
                                         >
                                             {d}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="filter-group">
+                                <label className="filter-group__label">Examen / Niveau</label>
+                                <div className="filter-pills">
+                                    {levels.map(l => (
+                                        <button
+                                            key={l}
+                                            className={`filter-pill ${activeLevel === l ? 'filter-pill--active' : ''}`}
+                                            onClick={() => setActiveLevel(l)}
+                                        >
+                                            {l}
                                         </button>
                                     ))}
                                 </div>

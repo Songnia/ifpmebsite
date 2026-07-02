@@ -23,6 +23,7 @@ export function InfoStep({ config, onUpdate, onNext, onPrev }: InfoStepProps) {
     description: config.description,
     logo: config.logo || '',
     whatsappNumber: config.whatsappNumber,
+    registrationFee: config.registrationFee || '',
     email: config.email,
     phone: config.phone,
     address: config.address,
@@ -73,6 +74,7 @@ export function InfoStep({ config, onUpdate, onNext, onPrev }: InfoStepProps) {
     description: config.description,
     logo: config.logo || '',
     whatsappNumber: config.whatsappNumber,
+    registrationFee: config.registrationFee || '',
     email: config.email,
     phone: config.phone,
     address: config.address,
@@ -106,6 +108,20 @@ export function InfoStep({ config, onUpdate, onNext, onPrev }: InfoStepProps) {
               onChange={(e) => handleChange('siteName', e.target.value)}
               placeholder="Ex: IFPMEB Togo"
             />
+          </div>
+
+          {/* Frais d'inscription */}
+          <div className="space-y-2">
+            <Label htmlFor="registrationFee" className="flex items-center gap-2">
+              Frais de dossier / d'inscription (Globaux)
+            </Label>
+            <Input
+              id="registrationFee"
+              value={formData.registrationFee}
+              onChange={(e) => handleChange('registrationFee', e.target.value)}
+              placeholder="Ex: 15 000 FCFA"
+            />
+            <p className="text-xs text-gray-500">Ces frais s'afficheront sur la page des tarifs et lors de l'inscription en ligne.</p>
           </div>
 
           {/* Logo */}

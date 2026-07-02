@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin, Youtube, Globe, Link2, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Globe, Link2, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -27,7 +27,8 @@ export function ContactStep({ config, onUpdate, onNext, onPrev }: ContactStepPro
       facebook: '',
       linkedin: '',
       youtube: '',
-      website: ''
+      website: '',
+      twitter: ''
     }
   });
 
@@ -62,15 +63,17 @@ export function ContactStep({ config, onUpdate, onNext, onPrev }: ContactStepPro
       facebook: '',
       linkedin: '',
       youtube: '',
-      website: ''
+      website: '',
+      twitter: ''
     }
   });
 
   const socialInputs = [
     { key: 'linkedin', label: 'LinkedIn', icon: Linkedin, placeholder: 'company/ifpmeb' },
-    { key: 'facebook', label: 'Facebook', icon: Facebook, placeholder: 'ifpmeb.togo' },
-    { key: 'instagram', label: 'Instagram', icon: Instagram, placeholder: '@ifpmeb' },
-    { key: 'youtube', label: 'YouTube', icon: Youtube, placeholder: '@ifpmeb_channel' },
+    { key: 'facebook', label: 'Facebook', icon: Link2, placeholder: 'ifpmeb.togo' },
+    { key: 'instagram', label: 'Instagram', icon: Link2, placeholder: '@ifpmeb' },
+    { key: 'twitter', label: 'Twitter/X', icon: Link2, placeholder: '@ifpmeb' },
+    { key: 'youtube', label: 'YouTube', icon: Link2, placeholder: '@ifpmeb_channel' },
     { key: 'website', label: 'Lien Site Web', icon: Globe, placeholder: 'www.ifpmeb.tg' }
   ];
 

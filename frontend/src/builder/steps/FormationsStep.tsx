@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Plus, X, GraduationCap, Edit2, Check, Upload, Image as ImageIcon } from 'lucide-react';
+import { Plus, X, GraduationCap, Edit2, Check, Upload, Image as ImageIcon, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -44,6 +44,15 @@ export function FormationsStep({
     const handleRemove = (id: string) => {
         onRemoveFormation(id);
         setFormations(prev => prev.filter(f => f.id !== id));
+    };
+
+    const handleDuplicate = (formation: Formation) => {
+        const { id, ...dataToDuplicate } = formation;
+        const newFormation = {
+            ...dataToDuplicate,
+            title: `${dataToDuplicate.title} (Copie)`,
+        };
+        handleAdd(newFormation);
     };
 
     const handleUpdate = (id: string, updates: Partial<Formation>) => {
@@ -116,10 +125,13 @@ export function FormationsStep({
                                         </div>
                                     </div>
                                     <div className="flex gap-2">
-                                        <Button variant="outline" size="icon" onClick={() => setEditingId(formation.id)}>
+                                        <Button variant="outline" size="icon" onClick={() => handleDuplicate(formation)} title="Dupliquer">
+                                            <Copy className="w-4 h-4 text-blue-500" />
+                                        </Button>
+                                        <Button variant="outline" size="icon" onClick={() => setEditingId(formation.id)} title="Modifier">
                                             <Edit2 className="w-4 h-4" />
                                         </Button>
-                                        <Button variant="outline" size="icon" onClick={() => handleRemove(formation.id)}>
+                                        <Button variant="outline" size="icon" onClick={() => handleRemove(formation.id)} title="Supprimer">
                                             <X className="w-4 h-4 text-red-500" />
                                         </Button>
                                     </div>
@@ -160,6 +172,7 @@ function FormationForm({
         level: '',
         domain: '',
         price: '',
+        installments: [],
         features: [''],
         image: ''
     });
@@ -194,6 +207,25 @@ function FormationForm({
         setFormData(prev => ({
             ...prev,
             features: prev.features.filter((_, i) => i !== index)
+        }));
+    };
+
+    const addInstallment = () => {
+        setFormData(prev => ({ ...prev, installments: [...(prev.installments || []), { name: '', amount: '' }] }));
+    };
+
+    const updateInstallment = (index: number, field: 'name' | 'amount', value: string) => {
+        setFormData(prev => {
+            const newInst = [...(prev.installments || [])];
+            newInst[index] = { ...newInst[index], [field]: value };
+            return { ...prev, installments: newInst };
+        });
+    };
+
+    const removeInstallment = (index: number) => {
+        setFormData(prev => ({
+            ...prev,
+            installments: (prev.installments || []).filter((_, i) => i !== index)
         }));
     };
 
@@ -338,6 +370,34 @@ function FormationForm({
                 <Button variant="outline" type="button" onClick={addFeature} className="w-full">
                     <Plus className="w-4 h-4 mr-2" />
                     Ajouter un point fort
+                </Button>
+            </div>
+
+            <div className="space-y-2 border-t pt-4">
+                <Label>Tranches de paiement (Optionnel)</Label>
+                <p className="text-xs text-gray-500 mb-2">Définissez les différentes échéances si la formation est payable en tranches.</p>
+                {(formData.installments || []).map((inst, index) => (
+                    <div key={index} className="flex gap-2">
+                        <Input
+                            value={inst.name}
+                            onChange={(e) => updateInstallment(index, 'name', e.target.value)}
+                            placeholder="Ex: 1ère tranche"
+                            className="flex-1"
+                        />
+                        <Input
+                            value={inst.amount}
+                            onChange={(e) => updateInstallment(index, 'amount', e.target.value)}
+                            placeholder="Ex: 150 000 FCFA"
+                            className="flex-1"
+                        />
+                        <Button variant="outline" size="icon" type="button" onClick={() => removeInstallment(index)}>
+                            <X className="w-4 h-4 text-red-500" />
+                        </Button>
+                    </div>
+                ))}
+                <Button variant="outline" type="button" onClick={addInstallment} className="w-full">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Ajouter une tranche de paiement
                 </Button>
             </div>
 

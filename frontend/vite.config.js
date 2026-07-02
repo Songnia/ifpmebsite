@@ -10,6 +10,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+
+  build: {
+    cssMinify: 'lightningcss',
+  },
   server: {
     allowedHosts: 'all',
     proxy: {
@@ -24,3 +28,4 @@ export default defineConfig({
     }
   }
 })
+

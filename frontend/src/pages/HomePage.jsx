@@ -1,11 +1,107 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useConfig } from '@/context/ConfigContext';
 import MediaPlaceholder from '../components/ui/MediaPlaceholder';
 import StatBlock from '../components/ui/StatBlock';
 import TrainingCard from '../components/ui/TrainingCard';
 import TestimonialCard from '../components/ui/TestimonialCard';
 import './HomePage.css';
+
+const TypewriterTitle = ({ part1, part2 }) => {
+    const [text1, setText1] = useState('');
+    const [text2, setText2] = useState('');
+    const [isTyping1, setIsTyping1] = useState(true);
+
+    useEffect(() => {
+        if (text1.length < part1.length) {
+            const timeout = setTimeout(() => {
+                setText1(part1.slice(0, text1.length + 1));
+            }, 40);
+            return () => clearTimeout(timeout);
+        } else {
+            setIsTyping1(false);
+        }
+    }, [text1, part1]);
+
+    useEffect(() => {
+        if (!isTyping1 && text2.length < part2.length) {
+            const timeout = setTimeout(() => {
+                setText2(part2.slice(0, text2.length + 1));
+            }, 40);
+            return () => clearTimeout(timeout);
+        }
+    }, [text2, part2, isTyping1]);
+
+    return (
+        <>
+            {text1}
+            {isTyping1 && <span className="typewriter-cursor">|</span>}
+            <br />
+            <span className="hero__title-gold">
+                {text2}
+                {!isTyping1 && <span className="typewriter-cursor">|</span>}
+            </span>
+        </>
+    );
+};
+
+const HeroSlider = ({ titlePart1, titlePart2, hero }) => {
+    const [activeSlide, setActiveSlide] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveSlide(current => (current === 0 ? 1 : 0));
+        }, 8000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="hero-slider-container">
+            <div className={`hero-slide ${activeSlide === 0 ? 'active' : ''}`}>
+                <p className="hero__eyebrow">{hero?.eyebrow || 'Bienvenue à l\'IFPMEB'}</p>
+                <h1 className="hero__title">
+                    {activeSlide === 0 ? <TypewriterTitle part1={titlePart1} part2={titlePart2} /> : null}
+                </h1>
+                <p className="hero__subtitle">
+                    {hero?.subtitle || 'Decouvrez nos programmes certifiants et donnez un élan décisif à votre carrière.'}
+                </p>
+            </div>
+
+            <div className={`hero-slide ${activeSlide === 1 ? 'active' : ''}`}>
+                <div className="hero__video-wrapper">
+                    {hero?.videoUrl ? (
+                        <iframe
+                            src={hero.videoUrl}
+                            title="Présentation IFPMEB"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-full h-full"
+                        ></iframe>
+                    ) : (
+                        <div className="hero__video-placeholder">
+                            <span className="play-icon">▶</span>
+                            <p>Vidéo de présentation du projet</p>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            <div className="hero-slider-controls">
+                <button
+                    className={`hero-slider-dot ${activeSlide === 0 ? 'active' : ''}`}
+                    onClick={() => setActiveSlide(0)}
+                    aria-label="Voir le texte d'introduction"
+                ></button>
+                <button
+                    className={`hero-slider-dot ${activeSlide === 1 ? 'active' : ''}`}
+                    onClick={() => setActiveSlide(1)}
+                    aria-label="Voir la vidéo de présentation"
+                ></button>
+            </div>
+        </div>
+    );
+};
 
 export default function HomePage() {
     const { config } = useConfig();
@@ -28,6 +124,9 @@ export default function HomePage() {
     const featuredFormations = formations.slice(0, 3);
     const upcomingEvents = events.slice(0, 3);
 
+    const titlePart1 = hero?.title ? hero.title.split(' ').slice(0, -4).join(' ') : "Une formation d'excellence pour";
+    const titlePart2 = hero?.title ? hero.title.split(' ').slice(-4).join(' ') : "votre avenir professionnel";
+
     return (
         <main>
             {/* ── HERO SECTION ────────────────────────────── */}
@@ -46,30 +145,57 @@ export default function HomePage() {
                 </div>
                 <div className="hero__overlay" />
                 <div className="container hero__content fade-in-up">
-                    <p className="hero__eyebrow">{hero?.eyebrow || 'Bienvenue à l\'IFPMEB'}</p>
-                    <h1 className="hero__title">
-                        {hero?.title ? (
-                            <>
-                                {hero.title.split(' ').slice(0, -4).join(' ')}
-                                <br />
-                                <span className="hero__title-gold">
-                                    {hero.title.split(' ').slice(-4).join(' ')}
-                                </span>
-                            </>
-                        ) : (
-                            <>
-                                Une formation d'excellence pour<br />
-                                <span className="hero__title-gold">votre avenir professionnel</span>
-                            </>
-                        )}
-                    </h1>
+                    <HeroSlider titlePart1={titlePart1} titlePart2={titlePart2} hero={hero} />
 
-                    <p className="hero__subtitle">
-                        {hero?.subtitle || 'Decouvrez nos programmes certifiants et donnez un élan décisif à votre carrière.'}
-                    </p>
                     <div className="hero__actions">
                         <Link to="/formations" className="btn btn-primary">Découvrir nos formations</Link>
                         <Link to="/inscription" className="btn btn-outline-light">S&apos;inscrire maintenant</Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── PRÉSENTATION VIDÉO ────────────────────────────── */}
+            <section className="section section--dark presentation-section" aria-label="Vidéo de présentation">
+                <div className="container presentation__container">
+                    <div className="presentation__header fade-in-up">
+                        <h2 className="section-title">Découvrez l&apos;IFPMEB</h2>
+                        <p className="section-subtitle" style={{ color: 'var(--color-cream)' }}>Une pédagogie innovante tournée vers l&apos;excellence, l&apos;employabilité et l&apos;entrepreneuriat.</p>
+                        <div className="divider-gold" />
+                    </div>
+
+                    <div className="presentation__video-wrapper reveal">
+                        {/* Carte vidéo principale (fond sombre/glassmorphism) */}
+                        <div className="presentation__video-card">
+                            <div className="presentation__glow"></div>
+                            <div className="presentation__video-placeholder">
+                                <button className="play-button" aria-label="Lancer la vidéo">
+                                    ▶
+                                </button>
+                                <p>Vidéo de présentation IFPMEB</p>
+                            </div>
+                        </div>
+
+                        {/* Éléments flottants inspirés de l'image */}
+                        <div className="floating-card floating-card--left">
+                            <span className="floating-card__value">95%</span>
+                            <span className="floating-card__label">Taux d&apos;insertion</span>
+                            <div className="floating-card__progress">
+                                <div className="floating-card__progress-bar" style={{ width: '95%' }}></div>
+                            </div>
+                        </div>
+
+                        <div className="floating-card floating-card--right">
+                            <span className="floating-card__icon">🎓</span>
+                            <div>
+                                <span className="floating-card__title">Excellence</span>
+                                <span className="floating-card__desc">Reconnu par l&apos;État</span>
+                            </div>
+                        </div>
+
+                        <div className="floating-card floating-card--top">
+                            <span className="pulse-indicator"></span>
+                            <span>Inscriptions Ouvertes</span>
+                        </div>
                     </div>
                 </div>
             </section>

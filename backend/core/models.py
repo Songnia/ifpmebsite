@@ -14,6 +14,7 @@ class SiteSettings(models.Model):
     description = models.TextField(blank=True)
     logo = models.ImageField(upload_to="branding/", blank=True, null=True)
     whatsapp_number = models.CharField(max_length=50, blank=True)
+    registration_fee = models.CharField(max_length=100, blank=True)
     
     # À Propos Content
     about_description = models.TextField(blank=True)
@@ -69,6 +70,7 @@ class Formation(models.Model):
     level = models.CharField(max_length=100)
     domain = models.CharField(max_length=100)
     price = models.CharField(max_length=100)
+    installments = models.JSONField(default=list, blank=True)
     features = models.JSONField(default=list)
     image = models.ImageField(upload_to="formations/", blank=True, null=True)
     order = models.PositiveIntegerField(default=0)

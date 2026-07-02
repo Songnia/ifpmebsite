@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Plus, X, MessageSquare, Star, Edit2, Check } from 'lucide-react';
+import { Plus, X, MessageSquare, Star, Edit2, Check, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -53,6 +53,13 @@ export function TestimonialsStep({
   const handleRemoveTestimonial = (id: string) => {
     onRemoveTestimonial(id);
     setTestimonials(prev => prev.filter(t => t.id !== id));
+  };
+
+  const handleDuplicateTestimonial = (testimonial: Testimonial) => {
+    const { id, ...dataToCopy } = testimonial;
+    const duplicatedData = { ...dataToCopy, name: `${dataToCopy.name} (Copie)` };
+    onAddTestimonial(duplicatedData);
+    setTestimonials(prev => [...prev, { id: Date.now().toString(), ...duplicatedData }]);
   };
 
   const handleUpdateTestimonial = (id: string, updates: Partial<Testimonial>) => {
@@ -186,8 +193,18 @@ export function TestimonialsStep({
                         <Button
                           variant="ghost"
                           size="icon"
+                          className="h-8 w-8 text-blue-500"
+                          onClick={() => handleDuplicateTestimonial(testimonial)}
+                          title="Dupliquer"
+                        >
+                          <Copy className="w-4 h-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="icon"
                           className="h-8 w-8"
                           onClick={() => setEditingTestimonial(testimonial.id)}
+                          title="Modifier"
                         >
                           <Edit2 className="w-4 h-4" />
                         </Button>
@@ -196,6 +213,7 @@ export function TestimonialsStep({
                           size="icon"
                           className="h-8 w-8 text-red-500"
                           onClick={() => handleRemoveTestimonial(testimonial.id)}
+                          title="Supprimer"
                         >
                           <X className="w-4 h-4" />
                         </Button>

@@ -94,11 +94,21 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     const updateConfig = (newConfig: Partial<SiteConfig>) => {
         setConfig(prev => {
+            // Compare chaque champ : si aucun n'a changé, on ne marque pas dirty
+            const hasRealChange = Object.keys(newConfig).some(key => {
+                const k = key as keyof SiteConfig;
+                return JSON.stringify(prev[k]) !== JSON.stringify(newConfig[k]);
+            });
+
             const updated = { ...prev, ...newConfig };
             applyColors(updated);
+
+            if (hasRealChange) {
+                setIsDirty(true);
+            }
+
             return updated;
         });
-        setIsDirty(true);
     };
 
     const buildSavePayload = (data: SiteConfig) => {
@@ -109,7 +119,8 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             return val; // Keep Base64 data for new uploads
         };
 
-        const cleaned = { ...data };
+        // 'cleaned' est un payload API (pas un SiteConfig) — null est valide pour supprimer des images
+        const cleaned: Record<string, any> = { ...data };
 
         // Top level images
         cleaned.logo = cleanImage(data.logo);

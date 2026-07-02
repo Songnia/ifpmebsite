@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Plus, X, Edit2, Check, TrendingUp, Trophy } from 'lucide-react';
+import { Plus, X, Edit2, Check, TrendingUp, Trophy, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -87,6 +87,14 @@ export function StatsStep({
     const handleRemoveResult = (id: string) => {
         onRemoveResult(id);
         setResults(prev => prev.filter(r => r.id !== id));
+    };
+
+    const handleDuplicateResult = (result: ExamResult) => {
+        const { id, ...dataToCopy } = result;
+        const duplicatedData = { ...dataToCopy, program: `${dataToCopy.program} (Copie)` };
+        
+        onAddResult(duplicatedData);
+        setResults(prev => [...prev, { id: Date.now().toString(), ...duplicatedData }]);
     };
 
     const saveEditResult = (id: string) => {
@@ -203,8 +211,15 @@ export function StatsStep({
                                         <span className="text-gray-600 italic">{r.result_text}</span>
                                     </div>
                                     <div className="flex gap-1">
-                                        <Button variant="ghost" size="icon" onClick={() => { setEditingId(r.id); setEditData(r); }}><Edit2 className="w-4 h-4" /></Button>
-                                        <Button variant="ghost" size="icon" onClick={() => handleRemoveResult(r.id)}><X className="w-4 h-4 text-red-500" /></Button>
+                                        <Button variant="ghost" size="icon" onClick={() => handleDuplicateResult(r)} title="Dupliquer">
+                                            <Copy className="w-4 h-4 text-blue-500" />
+                                        </Button>
+                                        <Button variant="ghost" size="icon" onClick={() => { setEditingId(r.id); setEditData(r); }} title="Modifier">
+                                            <Edit2 className="w-4 h-4" />
+                                        </Button>
+                                        <Button variant="ghost" size="icon" onClick={() => handleRemoveResult(r.id)} title="Supprimer">
+                                            <X className="w-4 h-4 text-red-500" />
+                                        </Button>
                                     </div>
                                 </div>
                             )}

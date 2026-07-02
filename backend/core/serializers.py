@@ -24,7 +24,7 @@ class FormationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Formation
-        fields = ['id', 'title', 'description', 'objectives', 'career_prospects', 'admission_requirements', 'duration', 'level', 'domain', 'price', 'features', 'image']
+        fields = ['id', 'title', 'description', 'objectives', 'career_prospects', 'admission_requirements', 'duration', 'level', 'domain', 'price', 'installments', 'features', 'image']
 
 class AcademicEventSerializer(serializers.ModelSerializer):
     id = serializers.CharField(source='frontend_id', required=False, allow_blank=True)
@@ -60,6 +60,7 @@ class SiteSettingsSerializer(serializers.ModelSerializer):
     # Custom CamelCase naming mappings to match frontend
     siteName = serializers.CharField(source='site_name', required=False)
     whatsappNumber = serializers.CharField(source='whatsapp_number', required=False)
+    registrationFee = serializers.CharField(source='registration_fee', required=False, allow_blank=True)
     
     primaryColor = serializers.CharField(source='primary_color', required=False)
     secondaryColor = serializers.CharField(source='secondary_color', required=False)
@@ -98,7 +99,7 @@ class SiteSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteSettings
         fields = [
-            'siteName', 'tagline', 'description', 'logo', 'whatsappNumber',
+            'siteName', 'tagline', 'description', 'logo', 'whatsappNumber', 'registrationFee',
             'primaryColor', 'secondaryColor', 'accentColor', 'backgroundColor', 'textColor',
             'email', 'phone', 'address', 'city', 'country',
             'aboutDescription', 'history', 'mission', 'foundationYear', 'aboutImage',

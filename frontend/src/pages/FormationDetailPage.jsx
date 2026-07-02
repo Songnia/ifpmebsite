@@ -18,7 +18,7 @@ export default function FormationDetailPage() {
                 <div className="container page-hero__content">
                     <div className="formation-detail__eyebrow">{formation.domain}</div>
                     <h1>{formation.title}</h1>
-                    <p>Formation certifiante • {formation.duration} • {formation.level}</p>
+                    <p>Formation certifiante • {formation.duration} • {formation.level} • Jour & Soir</p>
                 </div>
             </section>
 
@@ -88,10 +88,24 @@ export default function FormationDetailPage() {
                         <div className="formation-detail__card sticky-card">
                             <h3>En résumé</h3>
                             <ul className="formation-detail__summary">
+                                <li><strong>Format :</strong> ☀️ Jour & 🌙 Soir</li>
                                 <li><strong>Durée :</strong> {formation.duration}</li>
                                 <li><strong>Niveau :</strong> {formation.level}</li>
                                 <li><strong>Filière :</strong> {formation.domain}</li>
                                 <li><strong>Scolarité :</strong> <span className="text-bold" style={{ color: 'var(--color-primary-blue)' }}>{formation.price}</span></li>
+                                {formation.installments && formation.installments.length > 0 && (
+                                    <li className="mt-4 border-t pt-4">
+                                        <strong>Tranches de paiement :</strong>
+                                        <ul className="mt-2 space-y-2 text-sm">
+                                            {formation.installments.map((inst, idx) => (
+                                                <li key={idx} className="flex justify-between border-b pb-1 last:border-0">
+                                                    <span className="text-gray-600">{inst.name}</span>
+                                                    <span className="font-semibold">{inst.amount}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </li>
+                                )}
                             </ul>
 
                             <div className="formation-detail__actions">
