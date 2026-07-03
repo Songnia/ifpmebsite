@@ -132,9 +132,14 @@ export default function AdmissionTarifsPage() {
                     <div className="divider-gold" style={{ marginBottom: '2rem' }} />
                     
                     {config.registrationFee && (
-                        <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6 rounded-r-md">
-                            <h3 className="font-bold text-orange-800 text-lg mb-1">Frais d'inscription</h3>
-                            <p className="text-orange-700">Des frais uniques de <strong>{config.registrationFee}</strong> sont exigés pour la validation de tout dossier d'inscription, quelle que soit la formation choisie.</p>
+                        <div className="registration-fee-banner">
+                            <div className="registration-fee-banner__icon">💳</div>
+                            <div>
+                                <h3 className="registration-fee-banner__title">Frais d'inscription</h3>
+                                <p className="registration-fee-banner__text">
+                                    Des frais uniques de <strong>{config.registrationFee}</strong> sont exigés pour la validation de tout dossier d'inscription, quelle que soit la formation choisie.
+                                </p>
+                            </div>
                         </div>
                     )}
 

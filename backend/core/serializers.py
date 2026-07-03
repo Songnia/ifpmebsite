@@ -119,6 +119,12 @@ class SiteSettingsSerializer(serializers.ModelSerializer):
         if nested_data is None:
             return
 
+        # PROTECTION BACKEND: Empêcher la suppression massive (erreur de synchronisation frontend)
+        # Si le frontend envoie un tableau vide [] alors que la base de données n'est pas vide,
+        # nous bloquons la suppression pour éviter la perte de données (ex: crash du GET initial).
+        if len(nested_data) == 0 and manager.count() > 0:
+            return
+
         # Pluck out current items
         current_items = {item.frontend_id: item for item in manager.all() if item.frontend_id}
         updated_frontend_ids = []

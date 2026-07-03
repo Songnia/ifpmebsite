@@ -16,6 +16,19 @@
 .apropos-intro__text p {
     color: var(--color-gray-dark);
     font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.apropos-block {
+    margin-bottom: var(--space-xl);
+}
+
+.apropos-content p {
+    margin-bottom: var(--space-md);
+}
+
+.apropos-content p:last-child {
+    margin-bottom: 0;
 }
 
 .apropos-intro__media .media-placeholder {

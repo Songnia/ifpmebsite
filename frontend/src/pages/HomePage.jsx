@@ -51,7 +51,7 @@ const HeroSlider = ({ titlePart1, titlePart2, hero }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             setActiveSlide(current => (current === 0 ? 1 : 0));
-        }, 8000);
+        }, 15000);
         return () => clearInterval(interval);
     }, []);
 

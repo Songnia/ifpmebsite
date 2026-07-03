@@ -40,9 +40,14 @@ export default function ResultatsPage() {
         return () => observer.disconnect();
     }, []);
 
-    // Extract unique years and programs for dynamic filters
+    // Extract unique years from the results
     const availableYears = [...new Set(rawResults.map(r => r.year))].sort((a, b) => b.localeCompare(a));
-    const availablePrograms = [...new Set(rawResults.map(r => r.examName))].sort();
+    
+    // Extract actual active programs from the builder configurations, fallback to result's programs
+    const activeFormations = (config.formations || []).map(f => f.title);
+    const availablePrograms = activeFormations.length > 0
+        ? [...new Set(activeFormations)].sort()
+        : [...new Set(rawResults.map(r => r.examName))].sort();
 
     const handleFilter = ({ year, program }) => {
         setFilterInfo({

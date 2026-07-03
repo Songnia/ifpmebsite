@@ -22,6 +22,7 @@ export const useConfig = () => {
 export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [config, setConfig] = useState<SiteConfig>(defaultSiteConfig);
     const [isDirty, setIsDirty] = useState(false);
+    const [hasFetchError, setHasFetchError] = useState(false);
 
     useEffect(() => {
         const loadConfig = async () => {
@@ -55,6 +56,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
                 }
             } catch (err) {
                 console.error("Erreur serveur API, chargement depuis le cache local", err);
+                setHasFetchError(true);
             }
 
             if (!loadedFromServer) {
@@ -175,6 +177,11 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     };
 
     const saveConfig = async (overrides?: Partial<SiteConfig>): Promise<void> => {
+        if (hasFetchError) {
+            alert("🛑 PROTECTION SÉCURITÉ : La sauvegarde est bloquée car les données actuelles n'ont pas pu être chargées depuis le serveur. Sauvegarder maintenant risquerait d'écraser et de supprimer vos données. Veuillez recharger la page.");
+            throw new Error("Sauvegarde bloquée pour prévenir la perte de données.");
+        }
+
         try {
             const token = localStorage.getItem('ifpmeb_admin_token');
             const dataToSave = overrides ? { ...config, ...overrides } : config;

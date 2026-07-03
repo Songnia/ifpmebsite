@@ -202,6 +202,13 @@ export default function InscriptionPage() {
                                     En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans le cadre de ma demande d'inscription et de la relation commerciale qui peut en découler.
                                 </p>
 
+                                {/*config.registrationFee && (
+                                    <div className="form-fee-notice">
+                                        <span className="form-fee-notice__icon">💳</span>
+                                        <span>Frais d'inscription : <strong>{config.registrationFee}</strong></span>
+                                    </div>
+                                )*/}
+
                                 <button type="submit" className="btn btn-primary w-full" disabled={isSubmitting}>
                                     {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
                                 </button>
