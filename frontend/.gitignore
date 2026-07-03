@@ -12,6 +12,15 @@ dist
 dist-ssr
 *.local
 
+# Environment variables — NE JAMAIS committer !
+.env
+.env.local
+.env.production
+# (Garder .env.example — c'est un template public)
+
+# Vercel
+.vercel/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
