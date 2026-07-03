@@ -2,6 +2,62 @@ import { useState, useEffect } from 'react';
 import { useConfig } from '@/context/ConfigContext';
 import './InscriptionPage.css';
 
+const EPI_ITEMS = [
+    { emoji: '🪖', name: 'Casque de sécurité', color: '#f59e0b' },
+    { emoji: '🧤', name: 'Gants de protection', color: '#3b82f6' },
+    { emoji: '🥽', name: 'Lunettes de protection', color: '#10b981' },
+    { emoji: '👟', name: 'Chaussures de sécurité', color: '#8b5cf6' },
+];
+
+function EPISlider() {
+    const [current, setCurrent] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrent(prev => (prev + 1) % EPI_ITEMS.length);
+        }, 2800);
+        return () => clearInterval(interval);
+    }, []);
+
+    const item = EPI_ITEMS[current];
+
+    return (
+        <div className="epi-card">
+            <div className="epi-card__left">
+                <span className="epi-card__eyebrow">Avantage exclusif</span>
+                <h2 className="epi-card__title">À L'INSCRIPTION</h2>
+                <p className="epi-card__subtitle">
+                    vous recevrez vos équipements de protection individuelle (EPI) :
+                </p>
+                <div className="epi-card__dots">
+                    {EPI_ITEMS.map((_, i) => (
+                        <button
+                            key={i}
+                            className={`epi-dot ${i === current ? 'active' : ''}`}
+                            onClick={() => setCurrent(i)}
+                            aria-label={`Voir ${EPI_ITEMS[i].name}`}
+                        />
+                    ))}
+                </div>
+            </div>
+            <div className="epi-card__right">
+                {EPI_ITEMS.map((epi, i) => (
+                    <div
+                        key={i}
+                        className={`epi-slide ${i === current ? 'active' : ''}`}
+                        style={{ '--epi-color': epi.color }}
+                    >
+                        <div className="epi-slide__icon-wrapper">
+                            <span className="epi-slide__icon">{epi.emoji}</span>
+                        </div>
+                        <p className="epi-slide__name">{epi.name}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export default function InscriptionPage() {
     const { config } = useConfig();
     const formations = config.formations || [];
@@ -26,11 +82,11 @@ export default function InscriptionPage() {
         const data = {
             first_name: formData.get('firstname'),
             last_name: formData.get('lastname'),
-            email: formData.get('email'),
+            email: formData.get('email') || '',
             phone: formData.get('phone'),
             formation: formData.get('formation'),
             status_type: formData.get('status'),
-            message: formData.get('message')
+            message: formData.get('message') || ''
         };
 
         try {
@@ -74,10 +130,15 @@ export default function InscriptionPage() {
 
             {/* ── FORM & INFO ───────────────────────────── */}
             <section className="section inscription-main">
+                {/* ── EPI CARD ── */}
+                <div className="container" style={{ marginBottom: 'var(--space-2xl)' }}>
+                    <EPISlider />
+                </div>
+
                 <div className="container inscription-layout">
 
                     {/* Form */}
-                    <div className="inscription-form-wrapper reveal" style={{ transitionDelay: '0.2s' }}>
+                    <div className="inscription-form-wrapper">
                         {success ? (
                             <div className="inscription-success">
                                 <div className="inscription-success__icon">✓</div>
@@ -99,8 +160,8 @@ export default function InscriptionPage() {
 
                                 <div className="form-group row">
                                     <div className="input-field">
-                                        <label htmlFor="email">Email *</label>
-                                        <input type="email" id="email" name="email" required placeholder="koudoutresor@gmail.com" />
+                                        <label htmlFor="email">Email <span style={{ fontWeight: 400, opacity: 0.65, fontSize: '0.85em' }}>(optionnel)</span></label>
+                                        <input type="email" id="email" name="email" placeholder="koudoutresor@gmail.com" />
                                     </div>
                                     <div className="input-field">
                                         <label htmlFor="phone">Téléphone *</label>
@@ -123,6 +184,8 @@ export default function InscriptionPage() {
                                     <label htmlFor="status">Votre statut actuel</label>
                                     <select id="status" name="status">
                                         <option value="">Sélectionnez un statut</option>
+                                        <option value="student">Sans diplôme</option>
+                                        <option value="baccalaureat">En recherche de Formation</option>
                                         <option value="student">Étudiant(e)</option>
                                         <option value="pro">Professionnel(le) en activité</option>
                                         <option value="seeking">En recherche d'emploi</option>
@@ -130,10 +193,10 @@ export default function InscriptionPage() {
                                     </select>
                                 </div>
 
-                                <div className="form-group">
+                                {/*<div className="form-group">
                                     <label htmlFor="message">Message / Questions (optionnel)</label>
                                     <textarea id="message" name="message" rows="4" placeholder="Précisez votre projet professionnel ou posez vos questions..."></textarea>
-                                </div>
+                                </div> */}
 
                                 <p className="form-disclaimer">
                                     En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans le cadre de ma demande d'inscription et de la relation commerciale qui peut en découler.
@@ -147,7 +210,7 @@ export default function InscriptionPage() {
                     </div>
 
                     {/* Info Panel */}
-                    <aside className="inscription-info reveal" style={{ transitionDelay: '0.4s' }}>
+                    <aside className="inscription-info">
                         <div className="info-block">
                             <h3>Admission</h3>
                             <p><a href={`mailto:${config.email || 'admission@ifpmeb.tg'}`}>{config.email || 'admission@ifpmeb.tg'}</a></p>
@@ -167,8 +230,8 @@ export default function InscriptionPage() {
 
                         {config.registrationFee && (
                             <div className="info-block" style={{ backgroundColor: 'rgba(255, 183, 3, 0.1)', borderLeft: '4px solid var(--color-primary-orange)' }}>
-                                <h3 style={{ color: 'var(--color-primary-orange)' }}>Frais de dossier</h3>
-                                <p>Pour que votre inscription soit définitivement validée, des frais de dossier de <strong>{config.registrationFee}</strong> devront être réglés.</p>
+                                {/*<h3 style={{ color: 'var(--color-primary-orange)' }}>Frais de dossier</h3> */}
+                                <p>Finaliser son inscription: <strong>{config.registrationFee}</strong> devront être réglés.</p>
                             </div>
                         )}
 

@@ -1,4 +1,135 @@
+/* ── EPI CARD ────────────────────────────── */
+.epi-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: linear-gradient(135deg, var(--color-primary-blue-dark, #1d3557) 0%, var(--color-primary-blue, #2a4a7f) 100%);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border-bottom: 4px solid var(--color-primary-gold);
+    min-height: 220px;
+}
+
+.epi-card__left {
+    padding: var(--space-2xl) var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+
+.epi-card__eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary-gold);
+    background: rgba(197, 160, 89, 0.12);
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.epi-card__title {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    margin: 0;
+}
+
+.epi-card__subtitle {
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.epi-card__dots {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: var(--space-sm);
+}
+
+.epi-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.epi-dot.active {
+    background: var(--color-primary-gold);
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* Right side: sliding area */
+.epi-card__right {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.epi-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    opacity: 0;
+    transform: translateX(30px) scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+}
+
+.epi-slide.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+}
+
+.epi-slide__icon-wrapper {
+    width: 110px;
+    height: 110px;
+    background: var(--epi-color, #f59e0b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 40px color-mix(in srgb, var(--epi-color, #f59e0b) 40%, transparent);
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.epi-slide__icon {
+    font-size: 3.5rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.epi-slide__name {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.03em;
+}
+
 /* ── HERO SPLIT ────────────────────────────── */
+
 .inscription-hero {
     position: relative;
     padding-top: 12rem;
@@ -165,8 +296,8 @@
     color: rgba(255, 255, 255, 0.85);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    margin-top: var(--space-2xl);
     border-bottom: 5px solid var(--color-primary-gold);
+    align-self: start; /* ← Empêche l'étirement vertical automatique de la grille */
 }
 
 .info-block h3 {
@@ -226,6 +357,24 @@
         flex-wrap: wrap;
         justify-content: space-between;
     }
+
+    .epi-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .epi-card__right {
+        min-height: 180px;
+    }
+
+    .epi-slide__icon-wrapper {
+        width: 85px;
+        height: 85px;
+    }
+
+    .epi-slide__icon {
+        font-size: 2.8rem;
+    }
 }
 
 @media (max-width: 639px) {
@@ -244,5 +393,26 @@
 
     .inscription-info {
         flex-direction: column;
+    }
+
+    .epi-card__left {
+        padding: var(--space-xl) var(--space-lg);
+    }
+
+    .epi-card__right {
+        min-height: 160px;
+    }
+
+    .epi-slide__icon-wrapper {
+        width: 70px;
+        height: 70px;
+    }
+
+    .epi-slide__icon {
+        font-size: 2.2rem;
+    }
+
+    .epi-slide__name {
+        font-size: 0.95rem;
     }
 }

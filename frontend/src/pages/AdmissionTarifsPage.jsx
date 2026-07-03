@@ -133,7 +133,7 @@ export default function AdmissionTarifsPage() {
                     
                     {config.registrationFee && (
                         <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6 rounded-r-md">
-                            <h3 className="font-bold text-orange-800 text-lg mb-1">Frais de dossier & d'inscription</h3>
+                            <h3 className="font-bold text-orange-800 text-lg mb-1">Frais d'inscription</h3>
                             <p className="text-orange-700">Des frais uniques de <strong>{config.registrationFee}</strong> sont exigés pour la validation de tout dossier d'inscription, quelle que soit la formation choisie.</p>
                         </div>
                     )}
@@ -155,7 +155,7 @@ export default function AdmissionTarifsPage() {
                                             <td>
                                                 <strong>{t.title}</strong>
                                                 <div style={{ fontSize: '0.75rem', color: 'var(--color-primary-orange)', marginTop: '4px', fontWeight: '600' }}>
-                                                    Jour & Soir
+                                                    Jour et Soir
                                                 </div>
                                             </td>
                                             <td>{t.level}</td>

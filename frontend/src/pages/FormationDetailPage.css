@@ -152,3 +152,72 @@
         position: static;
     }
 }
+
+/* ── DÉBOUCHÉS PROFESSIONNELS ────────────── */
+.career-prospects {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.career-intro {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: var(--space-sm);
+}
+
+.career-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-sm);
+}
+
+.career-item--numbered {
+    background: linear-gradient(135deg, rgba(29, 53, 87, 0.05) 0%, rgba(29, 53, 87, 0.02) 100%);
+    border-left: 3px solid var(--color-primary-blue);
+    margin-top: var(--space-sm);
+}
+
+.career-item__num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--color-primary-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: var(--font-accent);
+    margin-top: 0.1rem;
+}
+
+.career-item--arrow {
+    padding-left: 1.5rem;
+    background: rgba(197, 160, 89, 0.06);
+    border-left: 2px solid var(--color-primary-gold);
+}
+
+.career-item__arrow {
+    flex-shrink: 0;
+    color: var(--color-primary-gold);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 0.1rem;
+}
+
+.career-item__text {
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    font-size: var(--text-body);
+}
+
+.career-item--numbered .career-item__text {
+    font-weight: 600;
+    color: var(--color-primary-blue);
+}

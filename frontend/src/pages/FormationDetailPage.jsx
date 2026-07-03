@@ -18,7 +18,7 @@ export default function FormationDetailPage() {
                 <div className="container page-hero__content">
                     <div className="formation-detail__eyebrow">{formation.domain}</div>
                     <h1>{formation.title}</h1>
-                    <p>Formation certifiante • {formation.duration} • {formation.level} • Jour & Soir</p>
+                    <p>Formation certifiante • {formation.duration} • {formation.level} • Jour et Soir</p>
                 </div>
             </section>
 
@@ -51,9 +51,33 @@ export default function FormationDetailPage() {
 
                         {formation.career_prospects && (
                             <div className="formation-detail__block">
-                                <h2>Débouchés professionnels</h2>
+                                <h2>{"Débouchés professionnels"}</h2>
                                 <div className="divider-gold" style={{ margin: '1rem 0 1.5rem' }} />
-                                <p className="text-gray-700 leading-relaxed font-medium">{formation.career_prospects}</p>
+                                <div className="career-prospects">
+                                    {formation.career_prospects.split('\n').map((line, i) => {
+                                        const trimmed = line.trim();
+                                        if (!trimmed) return null;
+                                        const isNumbered = /^\d+\./.test(trimmed);
+                                        const isArrow = /^[→]|^->/.test(trimmed);
+                                        if (isNumbered) {
+                                            return (
+                                                <div key={i} className="career-item career-item--numbered">
+                                                    <span className="career-item__num">{trimmed.match(/^\d+/)[0]}</span>
+                                                    <span className="career-item__text">{trimmed.replace(/^\d+\.?\s*/, '')}</span>
+                                                </div>
+                                            );
+                                        }
+                                        if (isArrow) {
+                                            return (
+                                                <div key={i} className="career-item career-item--arrow">
+                                                    <span className="career-item__arrow">{"→"}</span>
+                                                    <span className="career-item__text">{trimmed.replace(/^[→]|^->/, '').trim()}</span>
+                                                </div>
+                                            );
+                                        }
+                                        return <p key={i} className="career-intro">{trimmed}</p>;
+                                    })}
+                                </div>
                             </div>
                         )}
 
@@ -88,7 +112,7 @@ export default function FormationDetailPage() {
                         <div className="formation-detail__card sticky-card">
                             <h3>En résumé</h3>
                             <ul className="formation-detail__summary">
-                                <li><strong>Format :</strong> ☀️ Jour & 🌙 Soir</li>
+                                <li><strong>Format :</strong> ☀️ Jour et 🌙 Soir</li>
                                 <li><strong>Durée :</strong> {formation.duration}</li>
                                 <li><strong>Niveau :</strong> {formation.level}</li>
                                 <li><strong>Filière :</strong> {formation.domain}</li>

@@ -176,6 +176,8 @@ class SiteSettingsSerializer(serializers.ModelSerializer):
         return instance
 
 class InscriptionSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(required=False, allow_null=True, allow_blank=True)
+
     class Meta:
         model = Inscription
         fields = [

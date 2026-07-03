@@ -135,7 +135,7 @@ class Inscription(models.Model):
 
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=50)
     formation = models.CharField(max_length=255)
     status_type = models.CharField(max_length=100, blank=True) # "Étudiant", "Professionnel", etc.
