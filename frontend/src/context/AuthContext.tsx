@@ -32,7 +32,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const fetchUserProfile = async (access: string) => {
         try {
-            const response = await fetch('/api/v1/auth/me/', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL?.replace(/\/api\/v1\/?$/, '') || ''}/api/v1/auth/me/', {
                 headers: { 'Authorization': `Bearer ${access}` }
             });
             if (response.ok) {
