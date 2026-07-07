@@ -116,8 +116,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise: serve static files efficiently in production
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Django 5+ Storage Configuration
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -129,7 +136,7 @@ if os.environ.get('CLOUDINARY_CLOUD_NAME'):
         'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
         'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
     }
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    STORAGES["default"]["BACKEND"] = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # ─────────────────────────────────────────────
 # CORS (Cross-Origin Resource Sharing)
@@ -167,8 +174,8 @@ SIMPLE_JWT = {
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ─────────────────────────────────────────────
-# UPLOAD LIMITS
+# FILE UPLOAD LIMITS
 # ─────────────────────────────────────────────
-DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10 MB
-DATA_UPLOAD_MAX_NUMBER_FIELDS = None
-FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10 MB
+# Increase memory limits to 10MB to avoid 500 errors when receiving large Base64 images
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760
