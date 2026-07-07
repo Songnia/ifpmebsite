@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { Upload, Image, X, Type, Sparkles, Zap, Megaphone } from 'lucide-react';
+import { convertToWebP } from '@/utils/imageUtils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -28,38 +29,56 @@ export function HeroStep({ config, onUpdate, onNext, onPrev }: HeroStepProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const flashInfoFileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleHeroImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleHeroImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setHero(prev => ({ ...prev, backgroundImage: event.target!.result as string }));
-        }
-      };
-      reader.readAsDataURL(file);
+      try {
+        const webpData = await convertToWebP(file, 0.85, 1920, 1080);
+        setHero(prev => ({ ...prev, backgroundImage: webpData }));
+      } catch {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          if (event.target?.result)
+            setHero(prev => ({ ...prev, backgroundImage: event.target!.result as string }));
+        };
+        reader.readAsDataURL(file);
+      }
     }
   };
 
-  const handleFlashInfoImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFlashInfoImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          onUpdate({
-            flashInfo: {
-              enabled: config.flashInfo?.enabled ?? false,
-              title: config.flashInfo?.title || '',
-              subtitle: config.flashInfo?.subtitle || '',
-              buttonText: config.flashInfo?.buttonText || '',
-              whatsappMessage: config.flashInfo?.whatsappMessage,
-              backgroundImage: event.target!.result as string
-            }
-          });
-        }
-      };
-      reader.readAsDataURL(file);
+      try {
+        const webpData = await convertToWebP(file, 0.82, 1920, 600);
+        onUpdate({
+          flashInfo: {
+            enabled: config.flashInfo?.enabled ?? false,
+            title: config.flashInfo?.title || '',
+            subtitle: config.flashInfo?.subtitle || '',
+            buttonText: config.flashInfo?.buttonText || '',
+            whatsappMessage: config.flashInfo?.whatsappMessage,
+            backgroundImage: webpData
+          }
+        });
+      } catch {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          if (event.target?.result) {
+            onUpdate({
+              flashInfo: {
+                enabled: config.flashInfo?.enabled ?? false,
+                title: config.flashInfo?.title || '',
+                subtitle: config.flashInfo?.subtitle || '',
+                buttonText: config.flashInfo?.buttonText || '',
+                whatsappMessage: config.flashInfo?.whatsappMessage,
+                backgroundImage: event.target!.result as string
+              }
+            });
+          }
+        };
+        reader.readAsDataURL(file);
+      }
     }
   };
 

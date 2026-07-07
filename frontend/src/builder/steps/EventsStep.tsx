@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { convertToWebP } from '@/utils/imageUtils';
 import { Plus, X, Calendar, MapPin, Edit2, Check, Upload, Image as ImageIcon, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -169,16 +170,20 @@ function EventForm({
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                if (event.target?.result) {
-                    setFormData(prev => ({ ...prev, image: event.target!.result as string }));
-                }
-            };
-            reader.readAsDataURL(file);
+            try {
+                const webpData = await convertToWebP(file, 0.82, 1200, 800);
+                setFormData(prev => ({ ...prev, image: webpData }));
+            } catch {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    if (event.target?.result)
+                        setFormData(prev => ({ ...prev, image: event.target!.result as string }));
+                };
+                reader.readAsDataURL(file);
+            }
         }
     };
 

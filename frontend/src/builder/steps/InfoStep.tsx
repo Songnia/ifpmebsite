@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Building2, Mail, Phone, MapPin, Image as ImageIcon, MessageCircle } from 'lucide-react';
+import { convertLogoToWebP, convertToWebP } from '@/utils/imageUtils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -41,25 +42,32 @@ export function InfoStep({ config, onUpdate, onNext, onPrev }: InfoStepProps) {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData(prev => ({ ...prev, logo: reader.result as string }));
-      };
-      reader.readAsDataURL(file);
+      try {
+        const webpData = await convertLogoToWebP(file);
+        setFormData(prev => ({ ...prev, logo: webpData }));
+      } catch {
+        // Fallback : lecture directe si la conversion échoue
+        const reader = new FileReader();
+        reader.onloadend = () => setFormData(prev => ({ ...prev, logo: reader.result as string }));
+        reader.readAsDataURL(file);
+      }
     }
   };
 
-  const handleAboutImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAboutImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData(prev => ({ ...prev, aboutImage: reader.result as string }));
-      };
-      reader.readAsDataURL(file);
+      try {
+        const webpData = await convertToWebP(file, 0.82, 1200, 900);
+        setFormData(prev => ({ ...prev, aboutImage: webpData }));
+      } catch {
+        const reader = new FileReader();
+        reader.onloadend = () => setFormData(prev => ({ ...prev, aboutImage: reader.result as string }));
+        reader.readAsDataURL(file);
+      }
     }
   };
 

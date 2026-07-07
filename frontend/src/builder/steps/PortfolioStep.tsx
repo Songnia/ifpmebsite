@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Upload, Image, X, Plus, Folder, Grid3X3, LayoutGrid } from 'lucide-react';
+import { convertGalleryToWebP } from '@/utils/imageUtils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -61,34 +62,31 @@ export function PortfolioStep({ config, onAddPhoto, onAddPhotos, onRemovePhoto, 
     // Si on a un seul fichier, on garde le comportement actuel (pré-remplissage du formulaire)
     if (files.length === 1) {
       const file = files[0];
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setNewPhoto(prev => ({
-            ...prev,
-            url: event.target!.result as string
-          }));
-        }
-      };
-      reader.readAsDataURL(file);
+      try {
+        const webpData = await convertGalleryToWebP(file);
+        setNewPhoto(prev => ({ ...prev, url: webpData }));
+      } catch {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          if (event.target?.result)
+            setNewPhoto(prev => ({ ...prev, url: event.target!.result as string }));
+        };
+        reader.readAsDataURL(file);
+      }
       return;
     }
 
     // Si on a plusieurs fichiers, on les ajoute directement
     const batchCategory = newPhoto.category;
 
-    const uploadPromises = Array.from(files).map(file => {
-      return new Promise<{ url: string; category: string }>((resolve) => {
+    const uploadPromises = Array.from(files).map(file => convertGalleryToWebP(file).catch(() => {
+      // Fallback pour les fichiers qui échouent
+      return new Promise<string>((resolve) => {
         const reader = new FileReader();
-        reader.onload = (event) => {
-          resolve({
-            url: event.target?.result as string,
-            category: batchCategory
-          });
-        };
+        reader.onload = (event) => resolve(event.target?.result as string);
         reader.readAsDataURL(file);
       });
-    });
+    }).then(url => ({ url, category: batchCategory })));
 
     const results = await Promise.all(uploadPromises);
 
