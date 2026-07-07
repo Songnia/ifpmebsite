@@ -187,7 +187,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             const dataToSave = overrides ? { ...config, ...overrides } : config;
             const payload = buildSavePayload(dataToSave);
 
-            const res = await fetch('/api/v1/config/', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/config/`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -240,7 +240,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             
             if (!hasRegisteredVisit) {
                 try {
-                    const res = await fetch('/api/v1/track-visit/', {
+                    const res = await fetch(`${import.meta.env.VITE_API_URL}/track-visit/`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' }
                     });

@@ -90,7 +90,7 @@ export default function InscriptionPage() {
         };
 
         try {
-            const response = await fetch('/api/v1/inscriptions/', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/inscriptions/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
