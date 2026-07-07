@@ -4,6 +4,7 @@ import { SiteConfig, defaultSiteConfig } from '@/types/builder';
 interface ConfigContextType {
     config: SiteConfig;
     isDirty: boolean;
+    isLoading: boolean;
     updateConfig: (newConfig: Partial<SiteConfig>) => void;
     saveConfig: (overrides?: Partial<SiteConfig>) => Promise<void>;
     resetConfig: () => void;
@@ -23,6 +24,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const [config, setConfig] = useState<SiteConfig>(defaultSiteConfig);
     const [isDirty, setIsDirty] = useState(false);
     const [hasFetchError, setHasFetchError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const loadConfig = async () => {
@@ -73,6 +75,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
                     applyColors(defaultSiteConfig);
                 }
             }
+            setIsLoading(false);
         };
         loadConfig();
     }, []);
@@ -264,7 +267,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }, []);
 
     return (
-        <ConfigContext.Provider value={{ config, isDirty, updateConfig, saveConfig, resetConfig }}>
+        <ConfigContext.Provider value={{ config, isDirty, isLoading, updateConfig, saveConfig, resetConfig }}>
             {children}
         </ConfigContext.Provider>
     );

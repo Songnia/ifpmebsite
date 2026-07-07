@@ -8,7 +8,7 @@ import './styles/globals.css';
 
 import ScrollToTop from './components/ui/ScrollToTop';
 import ScrollToTopOnNav from './components/ui/ScrollToTopOnNav';
-import { ConfigProvider } from './context/ConfigContext';
+import { ConfigProvider, useConfig } from './context/ConfigContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 // Lazy-loaded pages — each generates its own JS chunk for faster initial load
@@ -47,47 +47,59 @@ function ProtectedRoute({ children }) {
   return isAuthenticated ? children : <Navigate to="/admin/login" replace />;
 }
 
+function AppRoutes() {
+  const { isLoading } = useConfig();
+
+  if (isLoading) {
+    return <PageLoader />;
+  }
+
+  return (
+    <BrowserRouter>
+      <ScrollToTopOnNav />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          {/* Public Routes with Navbar/Footer */}
+          <Route element={
+            <>
+              <Navbar />
+              <Outlet />
+              <ScrollToTop />
+              <Footer />
+            </>
+          }>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/formations" element={<FormationsPage />} />
+            <Route path="/formations/:id" element={<FormationDetailPage />} />
+            <Route path="/resultats" element={<ResultatsPage />} />
+            <Route path="/evenements" element={<EvenementsPage />} />
+            <Route path="/galerie" element={<GaleriePage />} />
+            <Route path="/admission" element={<AdmissionTarifsPage />} />
+            <Route path="/apropos" element={<AProposPage />} />
+            <Route path="/inscription" element={<InscriptionPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+
+          {/* Admin Login (public) */}
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+
+          {/* Protected Admin Builder */}
+          <Route path="/admin" element={
+            <ProtectedRoute>
+              <AdminPage />
+            </ProtectedRoute>
+          } />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
+}
+
 export default function App() {
   return (
     <AuthProvider>
       <ConfigProvider>
-        <BrowserRouter>
-          <ScrollToTopOnNav />
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              {/* Public Routes with Navbar/Footer */}
-              <Route element={
-                <>
-                  <Navbar />
-                  <Outlet />
-                  <ScrollToTop />
-                  <Footer />
-                </>
-              }>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/formations" element={<FormationsPage />} />
-                <Route path="/formations/:id" element={<FormationDetailPage />} />
-                <Route path="/resultats" element={<ResultatsPage />} />
-                <Route path="/evenements" element={<EvenementsPage />} />
-                <Route path="/galerie" element={<GaleriePage />} />
-                <Route path="/admission" element={<AdmissionTarifsPage />} />
-                <Route path="/apropos" element={<AProposPage />} />
-                <Route path="/inscription" element={<InscriptionPage />} />
-                <Route path="*" element={<NotFound />} />
-              </Route>
-
-              {/* Admin Login (public) */}
-              <Route path="/admin/login" element={<AdminLoginPage />} />
-
-              {/* Protected Admin Builder */}
-              <Route path="/admin" element={
-                <ProtectedRoute>
-                  <AdminPage />
-                </ProtectedRoute>
-              } />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
+        <AppRoutes />
       </ConfigProvider>
     </AuthProvider>
   );
