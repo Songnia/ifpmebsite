@@ -30,11 +30,18 @@ urlpatterns = [
     path('api/v1/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
+from django.urls import re_path
+from django.views.static import serve
+
 # ─────────────────────────────────────────────
 # LOCAL MEDIA SERVING (FALLBACK)
 # ─────────────────────────────────────────────
-# If Cloudinary is not configured, serve local media files
-# We do this even if DEBUG is False, to ensure local testing works 
-# when .env is not loaded properly in the terminal.
+# If Cloudinary is not configured, serve local media files.
+# We use explicit serve() because static() requires DEBUG=True.
 if not getattr(settings, 'CLOUDINARY_STORAGE', None):
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += [
+        re_path(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]
+
